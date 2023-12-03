@@ -1,0 +1,23 @@
+.header_img{
+    background: url("img/wave-haikei.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 10;
+    
+}
+.bg_second{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url("img/circle-scatter-haikei.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+.color{
+    color: #FCAF3C;
+}
+.menu{
+    backdrop-filter: blur(105px);
+}

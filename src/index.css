@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+    scroll-behavior: smooth;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #F47708;
+    border-radius: 10px;
+    /* text-transform: ; */
+}
+
+.main-container {
+    max-width: 1400px;
+    margin: auto auto;
+}
+
+@layer base {
+    .main-container {
+        @apply px-2 md:px-10 lg:px-10
+    }
+
+    label {
+        @apply flex flex-col
+    }
+
+    input, select {
+        @apply bg-transparent border outline-none p-2 rounded
+    }
+}
+
+.bg {
+    background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
+    background-size: 200% auto;
+    transition: all .5s ease-in-out;
+}
+
+.bg_liner {
+    background: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
+}
+
+.text-bg {
+    background: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
+
+.bg:hover {
+    background-position: 100% 0;
+    transition: all .5s ease-in-out;
+}
+
+
+@media screen and (min-width:1480px) {
+    .main-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
