@@ -1,5 +1,5 @@
 import React from 'react'
-import PasswordInp from './passwordInp'
+import PassInput from './PassInput'
 
 const SignIn = () => {
     return (
@@ -12,7 +12,7 @@ const SignIn = () => {
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="password">Parol</label>
-                    <PasswordInp id={"password1"} placeholder={"Parolingizni kiriting"} className={"w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"} />
+                    <PassInput id={"password1"} placeholder={"Parolingizni kiriting"} className={"w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"} />
                 </div>
                 <button className='bg mt-6 rounded-md py-3 hover:shadow-lg hover:shadow-[#FF663B] text-white '>Kirish</button>
             </form>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-
-const PasswordInp = ({ id, placeholder, className }) => {
+const PassInput = ({ id, placeholder, className }) => {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <div className='relative '>
@@ -26,4 +25,4 @@ const PasswordInp = ({ id, placeholder, className }) => {
     )
 }
 
-export default PasswordInp
+export default PassInput

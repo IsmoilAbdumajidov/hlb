@@ -1,6 +1,7 @@
 import React from 'react'
 import { PatternFormat } from 'react-number-format'
-import PasswordInp from './passwordInp'
+import PassInput from './PassInput'
+
 
 const SignUp = () => {
     return (
@@ -22,11 +23,11 @@ const SignUp = () => {
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="password">Parol</label>
-                    <PasswordInp id={"password"}  placeholder={"Parolingizni kiriting"} className={"w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"} />
+                    <PassInput id={"password"}  placeholder={"Parolingizni kiriting"} className={"w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"} />
                 </div>
                     <div>
                         <label className='text-sm' htmlFor="password1">Parol</label>
-                        <PasswordInp id={"password1"}  placeholder={"Parolingizni kiriting"} className={"w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"} />
+                        <PassInput id={"password1"}  placeholder={"Parolingizni kiriting"} className={"w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"} />
                     </div>
                 <button className='bg mt-4 rounded-md py-3 hover:shadow-lg hover:shadow-[#FF663B] text-white '>Kirish</button>
             </form>
