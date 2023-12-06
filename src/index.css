@@ -29,7 +29,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #F47708;
+    background: #FF663B;
     border-radius: 10px;
     /* text-transform: ; */
 }
