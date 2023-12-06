@@ -15,6 +15,7 @@ const Register = () => {
                         <button onClick={()=>(navigate("sign-in"),setisOpen(true))} className={`${isOpen ? "bg text-white" : "hover:bg-gray-100 transition-all"} p-2 px-3 sm:px-6 rounded-md`}>Kirish</button>
                         <button onClick={()=>(navigate("sign-up"),setisOpen(false))} className={`${!isOpen ? "bg text-white" : "hover:bg-gray-100 transition-all"} p-2 px-3 sm:px-6 rounded-md`}>Ro'yxatdan o'tish</button>
                     </div>
+                    
                     <Outlet/>
                 </div>
                 <div className='hidden lg:block'>
