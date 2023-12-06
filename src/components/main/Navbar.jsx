@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   return (
     <div className='border-b border-white/60 bg-white/50 fixed w-full top-0 left-0 z-30 backdrop-blur-md'>
@@ -30,7 +32,7 @@ const Navbar = () => {
             <option className='hover:bg-[#FCAF3C]' value="eng">eng</option>
             <option className='hover:bg-[#FCAF3C]' value="ru">ru</option>
           </select>
-          <button className='bg lg:ms-auto mt-auto lg:mt-0 rounded-lg w-full lg:w-auto text-white px-7 py-3 '>Click Me</button>
+          <button onClick={()=> navigate("/register")} className='bg lg:ms-auto mt-auto lg:mt-0 rounded-lg w-full lg:w-auto text-white px-7 py-3 '>Kirish</button>
         </ul>
       </nav>
     </div>
