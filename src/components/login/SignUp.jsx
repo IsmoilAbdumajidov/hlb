@@ -18,7 +18,7 @@ const SignUp = () => {
                     <input className='w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]' type="text" id='username' placeholder='Usernameni kiring' />
                 </div>
                 <div>
-                    <label className='text-sm' htmlFor="username">Username</label>
+                    <label className='text-sm' htmlFor="username">Telefon</label>
                     <PatternFormat format="+998 (##) ### ## ##" className='w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]'   placeholder="+998 99 123 45 67"/>
                 </div>
                 <div>
