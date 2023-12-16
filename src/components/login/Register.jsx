@@ -8,7 +8,7 @@ const Register = () => {
     const navigate = useNavigate()
     const [isOpen, setisOpen] = useState(true)
     return (
-        <div className='h-screen bg-orange-50 py-5'>
+        <div className='min-h-screen bg-orange-50 py-5'>
             <div className='h-full main-container items-center grid grid-cols-1 gap-52 lg:grid-cols-2 justify-between'>
                 <div>
                     <div className='rounded-lg flex m-auto  items-center p-2 gap-2 mb-7 bg-white w-max'>
