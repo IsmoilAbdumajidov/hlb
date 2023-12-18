@@ -5,7 +5,7 @@ import './index.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter } from 'react-router-dom'
 
-import './components/css/hover.css'
+import './css/hover.css'
 
 const queryClient = new QueryClient()
 

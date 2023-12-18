@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { PatternFormat } from 'react-number-format'
-import PassInput from './PassInput'
 import { postingRegister } from '../../hooks/PostingRegistration'
 const inputStyle = "w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"
 import Input from 'react-phone-number-input/input'
+import PassInput from '../../components/input/PassInput'
+import { useNavigate } from 'react-router-dom'
 
 const initialValue = {
     user: {
@@ -11,23 +11,26 @@ const initialValue = {
         password: ""
     },
     full_name: "",
-    number: "",
+    phone_number: "",
+    passport_data:""
 }
 
 const SignUp = () => {
+    
     const [inputsValue, setInputsValue] = useState(initialValue)
+
     const inputHandler = (name, value, isObj) => {
         setInputsValue(prev => (isObj ? { ...prev, user: { ...prev.user, [name]: value } } : { ...prev, [name]: value }))
     }
+    const navigate = useNavigate()
     const [passwValue, setPasswValue] = useState("")
     const [ischekked, setIschekked] = useState()
+    const { mutate, isError, data, error } = postingRegister({navigate})
+    
 
-
-    console.log(inputsValue);
-
-    const registerHandler = () => {
-        const post = postingRegister("", inputsValue)
-        console.log(post);
+    const registerHandler = async (e) => {
+        e.preventDefault()
+        mutate(inputsValue)
     }
 
     useEffect(() => {
@@ -39,13 +42,10 @@ const SignUp = () => {
                 setIschekked(false)
             }
         }
-        else{
+        else {
             setIschekked("")
         }
     }, [passwValue, inputsValue.user.password])
-
-    console.log(passwValue);
-    console.log(ischekked);
 
     return (
 
@@ -62,8 +62,7 @@ const SignUp = () => {
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="number">Telefon</label>
-                    {/* <PatternFormat id='number' onChange={(e) => inputHandler(e.target.name, e.target.value,false)} name='number' format="+998 ## ### ## ##" className={inputStyle} placeholder="+998 99 123 45 67" required /> */}
-                    <Input maxLength={17} value={"+998"} id={"number"} className={inputStyle} placeholder="+998 99 123 45 67" onChange={(e) => { inputHandler("number", e, false) }} required />
+                    <Input maxLength={17} value={"+998"} id={"number"} className={inputStyle} placeholder="+998 99 123 45 67" onChange={(e) => { inputHandler("phone_number", e, false) }} required />
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="password">Parol</label>
@@ -74,7 +73,7 @@ const SignUp = () => {
                     <PassInput onChange={(e) => setPasswValue(e.target.value)} id={"password1"} placeholder={"Parolingizni takrorlang"} className={inputStyle} required />
                     {ischekked === false ? <p className='text-sm text-red-500 mt-3'>Parollar bir xil kiritlmadi</p> : ""}
                 </div>
-                <button disabled={inputsValue.user.password && inputsValue.user.username && inputsValue.full_name && inputsValue.number && ischekked ? false : true} className='bg mt-4 disabled:opacity-50 disabled:hover:cursor-not-allowed disabled:shadow-none rounded-md py-3 hover:shadow-lg hover:shadow-[#FF663B] text-white '>Kirish</button>
+                <button type='submit' disabled={inputsValue.user.password && inputsValue.user.username && inputsValue.full_name && inputsValue.phone_number && ischekked ? false : true} className='bg mt-4 disabled:opacity-50 disabled:hover:cursor-not-allowed disabled:shadow-none rounded-md py-3 hover:shadow-lg hover:shadow-[#FF663B] text-white '>Kirish</button>
             </form>
         </div>
 

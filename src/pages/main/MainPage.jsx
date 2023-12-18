@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../components/main/Navbar'
-import Header from '../components/main/Header'
-import CountNumber from '../components/main/CountNumber'
-import Courses from '../components/main/Courses'
-import OurPartners from '../components/main/OurPartners'
-import Footer from '../components/main/Footer'
-import "../components/main/header.css"
+import Navbar from '../../components/main/Navbar'
+import Header from '../../components/main/Header'
+import CountNumber from '../../components/main/CountNumber'
+import Courses from '../../components/main/Courses'
+import OurPartners from '../../components/main/OurPartners'
+import Footer from '../../components/main/Footer'
+import "../../components/main/header.css"
 
 const MainPage = () => {
   return (

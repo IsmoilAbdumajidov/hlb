@@ -1,8 +1,9 @@
 import React from 'react'
-import PassInput from './PassInput'
+import PassInput from '../../components/input/PassInput'
 
 const SignIn = () => {
     const inputStyle = "w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"
+    const from = location.state?.from?.pathname || "/user-page"
     return (
         <div className='bg-white shadow-lg rounded-xl  p-10'>
             <h1 className='text-2xl font-bold mb-5'>Kirish</h1>
