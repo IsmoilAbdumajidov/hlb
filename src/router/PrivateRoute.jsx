@@ -13,8 +13,6 @@ const PrivateRoute = ({ children, path }) => {
     useEffect(() => {
         if (token) {
             setIsAuthenticated(true);
-            console.log(isAuthenticated);
-            console.log(token);
         }
         else{
             setIsAuthenticated(false)

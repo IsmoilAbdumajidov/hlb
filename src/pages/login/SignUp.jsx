@@ -12,11 +12,11 @@ const initialValue = {
     },
     full_name: "",
     phone_number: "",
-    passport_data:""
+    passport_data: ""
 }
 
 const SignUp = () => {
-    
+
     const [inputsValue, setInputsValue] = useState(initialValue)
 
     const inputHandler = (name, value, isObj) => {
@@ -25,8 +25,7 @@ const SignUp = () => {
     const navigate = useNavigate()
     const [passwValue, setPasswValue] = useState("")
     const [ischekked, setIschekked] = useState()
-    const { mutate, isError, data, error } = postingRegister({navigate})
-    
+    const { mutate } = postingRegister({ navigate })
 
     const registerHandler = async (e) => {
         e.preventDefault()
@@ -58,7 +57,7 @@ const SignUp = () => {
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="username">Username</label>
-                    <input onChange={(e) => inputHandler(e.target.name, e.target.value, true)} name='username' className={inputStyle} type="text" id='username' placeholder='Usernameni kiring' required />
+                    <input onChange={(e) => inputHandler(e.target.name, e.target.value.toLowerCase(), true)} name='username' className={`${inputStyle} lowercase`} type="text" id='username' placeholder='Usernameni kiring' required />
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="number">Telefon</label>

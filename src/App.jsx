@@ -9,10 +9,25 @@ import UserPage from './pages/userpage/UserPage'
 import Home from './pages/userpage/Home'
 import PrivateRoute from './router/PrivateRoute'
 import Settings from './pages/userpage/Settings'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
     <div>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='*' element={<PageNotFound />} />
