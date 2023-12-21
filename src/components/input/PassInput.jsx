@@ -4,7 +4,7 @@ const PassInput = ({ id,name,onChange, placeholder, className }) => {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <div className='relative'>
-            <input onChange={onChange} minLength={8} name={name || ""} type={`${isOpen ? "text" : "password"}`} className={className} placeholder={placeholder} id={id} required/>
+            <input onChange={onChange} name={name || ""} type={`${isOpen ? "text" : "password"}`} className={className} placeholder={placeholder} id={id} required/>
             <div className='absolute right-1 px-1 bg-gray-50 top-[50%] -translate-y-[50%] h-[90%] flex justify-center items-center'>
                 <button onClick={()=>setIsOpen(!isOpen)} type='button' className='bg py-2 px-3  rounded-md text-white'>
                     {isOpen ?

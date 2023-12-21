@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import PageNotFound from './pages/PageNotFound'
 import MainPage from './pages/main/MainPage'
 import Register from './pages/login/Register'
@@ -10,8 +10,19 @@ import Home from './pages/userpage/Home'
 import PrivateRoute from './router/PrivateRoute'
 import Settings from './pages/userpage/Settings'
 import { ToastContainer } from 'react-toastify'
+import { useEffect } from 'react'
+import { getFromLS } from './utils/localStorage'
 
 const App = () => {
+  const navigate = useNavigate()
+  const token = getFromLS("a-token")
+  useEffect(() => {
+    if (token) {
+      navigate("/user-page")
+    }
+  }, []);
+
+
   return (
     <div>
 

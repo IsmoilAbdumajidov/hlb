@@ -20,7 +20,7 @@ const PrivateRoute = ({ children, path }) => {
         setIsChecking(false);
     }, []);
     
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
 
     if (isAuthenticated==false) {
         return <Navigate state={{from:location}} to="/register" replace />;
