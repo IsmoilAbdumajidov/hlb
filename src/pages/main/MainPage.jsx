@@ -6,8 +6,18 @@ import Courses from '../../components/main/Courses'
 import OurPartners from '../../components/main/OurPartners'
 import Footer from '../../components/main/Footer'
 import "../../components/main/header.css"
+import { useNavigate } from 'react-router-dom'
+import { getFromLS } from '../../utils/localStorage'
+import { useEffect } from 'react'
 
 const MainPage = () => {
+  const navigate = useNavigate()
+  const token = getFromLS("a-token")
+  useEffect(() => {
+    if (token) {
+      navigate("/user-page")
+    }
+  }, []);
   return (
     <div>
       <div className="header_img">

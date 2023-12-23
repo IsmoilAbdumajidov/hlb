@@ -6,22 +6,14 @@ import Register from './pages/login/Register'
 import SignUp from './pages/login/SignUp'
 import SignIn from './pages/login/SignIn'
 import UserPage from './pages/userpage/UserPage'
-import Home from './pages/userpage/Home'
 import PrivateRoute from './router/PrivateRoute'
-import Settings from './pages/userpage/Settings'
 import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { getFromLS } from './utils/localStorage'
+import Course from './pages/userpage/Course'
+import Lessons from './pages/userpage/Lessons'
 
 const App = () => {
-  const navigate = useNavigate()
-  const token = getFromLS("a-token")
-  useEffect(() => {
-    if (token) {
-      navigate("/user-page")
-    }
-  }, []);
-
 
   return (
     <div>
@@ -49,8 +41,9 @@ const App = () => {
         </Route>
 
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>
-          <Route path='home' element={<PrivateRoute path={"/user-page/home"}><Home /></PrivateRoute>} />
-          <Route path='settings' element={<PrivateRoute path={"/user-page/settings"}><Settings /></PrivateRoute>} />
+          <Route index element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
+          <Route path='kurslar' element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
+          <Route path='kurslar/lessons' element={<PrivateRoute path={"lessons"}><Lessons /></PrivateRoute>} />
         </Route>
       </Routes>
 
