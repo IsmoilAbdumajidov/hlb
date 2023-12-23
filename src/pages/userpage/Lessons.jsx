@@ -1,5 +1,4 @@
 import React from 'react'
-import { IoIosArrowDown } from "react-icons/io";
 import AccordionCom from '../../components/accordion/AccordionCom';
 
 const Lessons = () => {
@@ -11,28 +10,22 @@ const Lessons = () => {
             </div>
             <div className='flex flex-col gap-4'>
                 <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"}>
-                        <h5 className='text-lg'>Hello world</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas iste, dolores cupiditate harum similique nam consequuntur nihil ipsa, est, placeat culpa doloribus voluptas quia voluptatem enim repellat magnam eligendi provident.</p>
-                    </AccordionCom>
+                    <AccordionCom title={"Hello world"} />
                 </div>
                 <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"}>
-                        <h5 className='text-lg'>Hello world</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas iste, dolores cupiditate harum similique nam consequuntur nihil ipsa, est, placeat culpa doloribus voluptas quia voluptatem enim repellat magnam eligendi provident.</p>
-                    </AccordionCom>
+                    <AccordionCom title={"Hello world"} />
                 </div>
                 <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"}>
-                        <h5 className='text-lg'>Hello world</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas iste, dolores cupiditate harum similique nam consequuntur nihil ipsa, est, placeat culpa doloribus voluptas quia voluptatem enim repellat magnam eligendi provident.</p>
-                    </AccordionCom>
+                    <AccordionCom title={"Hello world"} />
                 </div>
                 <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"}>
-                        <h5 className='text-lg'>Hello world</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas iste, dolores cupiditate harum similique nam consequuntur nihil ipsa, est, placeat culpa doloribus voluptas quia voluptatem enim repellat magnam eligendi provident.</p>
-                    </AccordionCom>
+                    <AccordionCom title={"Hello world"} />
+                </div>
+                <div className='shadow rounded-lg'>
+                    <AccordionCom title={"Hello world"} />
+                </div>
+                <div className='shadow rounded-lg'>
+                    <AccordionCom title={"Hello world"} />
                 </div>
             </div>
         </div>
