@@ -4,9 +4,7 @@ import { addToLS } from "../utils/localStorage";
 import { toast } from "react-toastify";
 
 export const postingRegister = ({ navigate }) => {
-    // const queryClient = useQueryClient()
-    return useMutation((data) => instance.post("register/", data, {
-        // withCredentials:true,
+    return useMutation((data) => instance.post("accounts/register/", data, {
     }),
         {
             onSuccess: (data) => {
@@ -25,9 +23,7 @@ export const postingRegister = ({ navigate }) => {
 }
 
 export const useLogin = ({ navigate }) => {
-    // const queryClient = useQueryClient()
-    return useMutation((data) => instance.post("login/", data, {
-        // withCredentials:true,
+    return useMutation((data) => instance.post("accounts/login/", data, {
     }),
         {
             onSuccess: (data) => {

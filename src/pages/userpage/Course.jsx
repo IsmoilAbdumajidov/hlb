@@ -1,8 +1,11 @@
 import React from 'react'
 import CourseCard from '../../components/user-page/CourseCard'
+import { getAllCourses } from '../../hooks/CoursesApi'
 
 const Course = () => {
 
+    const { data } = getAllCourses()
+    console.log(data);
     return (
         <div>
             <div className='border-b border-black/10'>
@@ -10,11 +13,9 @@ const Course = () => {
                 <h1 className='text-bg text-3xl pb-5 sm:text-4xl md:text-3xl font-semibold '>Kurslar</h1>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 md:grid-cols-3 mt-10 xl:grid-cols-4">
-               <CourseCard/>
-               <CourseCard/>
-               <CourseCard/>
-               <CourseCard/>
-               <CourseCard/>
+                {data?.data.map((item, i) => (
+                    <CourseCard item={item} key={i} />
+                ))}
             </div>
         </div>
     )
