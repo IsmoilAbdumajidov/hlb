@@ -14,7 +14,7 @@ function Icon({ id, open }) {
 
 }
 
-const AccordionCom = ({ title }) => {
+const AccordionCom = ({ data }) => {
     console.log();
     const [open, setOpen] = React.useState(0);
 
@@ -25,7 +25,7 @@ const AccordionCom = ({ title }) => {
         <>
             <Accordion className='px-3' open={open === 1} icon={<Icon id={1} open={open} />}>
                 <AccordionHeader className='border-none' onClick={() => handleOpen(1)}>
-                    <h2 className='w-full text-start'>{title}</h2>
+                    <h2 className='w-full text-start'>{data.title}</h2>
                 </AccordionHeader>
                 <AccordionBody className="pb-4 pt-0">
                     <div className='border-b-2 text-black border-dotted pt-3 pb-1 border-black flex justify-between'>

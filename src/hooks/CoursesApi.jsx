@@ -8,3 +8,9 @@ export const getAllCourses = ()=>{
         onError:(error)=>console.log(error),
     })
 }
+export const getLessonByID = (id)=>{
+    return useQuery(["courses"], ()=>instance.get(`student/lessons/${id}/`), {refetchOnWindowFocus:false,
+        onSuccess:(data)=>console.log(data),
+        onError:(error)=>console.log(error),
+    })
+}

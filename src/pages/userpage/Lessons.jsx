@@ -1,7 +1,12 @@
 import React from 'react'
 import AccordionCom from '../../components/accordion/AccordionCom';
+import { useParams } from 'react-router-dom';
+import { getLessonByID } from '../../hooks/CoursesApi';
 
 const Lessons = () => {
+    const { kursId } = useParams()
+    const {data} = getLessonByID(kursId)
+    console.log(data);
     return (
         <div>
             <div className='border-b mb-6 border-black/10'>
@@ -9,24 +14,11 @@ const Lessons = () => {
                 <h1 className='text-bg text-3xl pb-5 sm:text-4xl md:text-3xl font-semibold '>Kurslar</h1>
             </div>
             <div className='flex flex-col gap-4'>
-                <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"} />
-                </div>
-                <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"} />
-                </div>
-                <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"} />
-                </div>
-                <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"} />
-                </div>
-                <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"} />
-                </div>
-                <div className='shadow rounded-lg'>
-                    <AccordionCom title={"Hello world"} />
-                </div>
+                {data?.data.map((item, i) => (
+                    <div key={i} className='shadow rounded-lg'>
+                        <AccordionCom data={item} />
+                    </div>
+                ))}
             </div>
         </div>
     )

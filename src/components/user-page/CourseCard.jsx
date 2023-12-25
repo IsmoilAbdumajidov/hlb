@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
   Card,
   CardHeader,
@@ -10,6 +10,7 @@ import {
 
 const CourseCard = ({item}) => {
   const navigate = useNavigate()
+  const param = useSearchParams()
   return (
     <Card className="w-full mt-5">
       <CardHeader color="blue-gray" className="relative mx-2 md:mx-3 aspect-[5/3]">
@@ -24,7 +25,7 @@ const CourseCard = ({item}) => {
         </Typography>
       </CardBody>
       <CardFooter className="px-3 pt-0 pb-3 mt-auto">
-        <button onClick={() => navigate("/user-page/kurslar/lessons")} className='bg py-2 mt-3 w-full rounded-lg text-white'>Kirish</button>
+        <button onClick={() => navigate(`/user-page/kurslar/lessons/${item.id}`)} className='bg py-2 mt-3 w-full rounded-lg text-white'>Kirish</button>
       </CardFooter>
     </Card>
   )

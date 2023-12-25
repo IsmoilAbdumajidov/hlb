@@ -43,7 +43,7 @@ const App = () => {
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>
           <Route index element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
           <Route path='kurslar' element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
-          <Route path='kurslar/lessons' element={<PrivateRoute path={"lessons"}><Lessons /></PrivateRoute>} />
+          <Route path='kurslar/lessons/:kursId' element={<PrivateRoute path={"lessons"}><Lessons /></PrivateRoute>} />
         </Route>
       </Routes>
 
