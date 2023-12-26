@@ -21,7 +21,7 @@ const CourseCard = ({item}) => {
       </CardHeader>
       <CardBody className='px-3 pt-3 pb-0'>
         <Typography color="blue-gray">
-          <span className='md:text-lg'>{item.title}</span>
+          <span className='text-md'>{item.title}</span>
         </Typography>
       </CardBody>
       <CardFooter className="px-3 pt-0 pb-3 mt-auto">
