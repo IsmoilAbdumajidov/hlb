@@ -25,7 +25,7 @@ const CourseCard = ({item}) => {
         </Typography>
       </CardBody>
       <CardFooter className="px-3 pt-0 pb-3 mt-auto">
-        <button onClick={() => navigate(`/user-page/kurslar/lessons/${item.id}`)} className='bg py-2 mt-3 w-full rounded-lg text-white'>Kirish</button>
+        <button onClick={() => navigate(`/user-page/kurslar/lessons/${item.slug}`)} className='bg py-2 mt-3 w-full rounded-lg text-white'>Kirish</button>
       </CardFooter>
     </Card>
   )

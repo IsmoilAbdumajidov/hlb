@@ -8,18 +8,7 @@ import UserNavbar from '../../components/user-page/UserNavbar';
 const UserPage = () => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false)
-    instance.interceptors.response.use((response) => {
-        return response;
-    }, (error) => {
-        if ((error.response && error?.response?.status === 401) || error?.response?.status === 403) {
-            clearLS()
-            navigate("/register");
-        } else if (error.response && error.response.status === 500) {
-            console.log(error);
-        }
 
-        return Promise.reject(error);
-    });
 
     const logOut = () => {
         clearLS()

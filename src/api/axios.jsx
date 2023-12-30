@@ -1,8 +1,9 @@
 import axios from "axios";
+import { getFromLS } from "../utils/localStorage";
 
 export const instance = axios.create({
-    baseURL: "https://hlbplatform.pythonanywhere.com/api/",
-    // baseURL: "https://1ff5-95-214-211-22.ngrok-free.app/api/accounts",
+    // baseURL: "https://hlbplatform.pythonanywhere.com/api/",
+    baseURL: "https://cfff-92-63-204-119.ngrok-free.app/api/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -11,10 +12,10 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
     (config) => {
-        // console.log(config);
-        const token = sessionStorage.getItem("token");
+        const token = getFromLS("a-token");
+        console.log(config);
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.authorization = `Bearer ${token}`;
         }
         return config;
     },
@@ -22,3 +23,17 @@ instance.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+
+
+instance.interceptors.response.use((response) => {
+    return response;
+}, (error) => {
+    if ((error.response && error?.response?.status === 401) || error?.response?.status === 403) {
+        clearLS()
+        navigate("/register");
+    } else if (error.response && error.response.status === 500) {
+        console.log(error);
+    }
+
+    return Promise.reject(error);
+});

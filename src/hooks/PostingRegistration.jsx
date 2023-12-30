@@ -2,16 +2,19 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { instance } from "../api/axios"
 import { addToLS } from "../utils/localStorage";
 import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 export const postingRegister = ({ navigate }) => {
     return useMutation((data) => instance.post("accounts/register/", data, {
     }),
         {
             onSuccess: (data) => {
+                console.log(data);
                 addToLS("a-token", data?.data?.access_token)
                 addToLS("r-token", data?.data?.refresh_token)
                 navigate("/user-page")
                 toast.success("Muvaffaqiyatli ro'yxatdan o'tdingiz")
+                
             },
             onError: (error) => {
                 console.log(error);
@@ -27,6 +30,7 @@ export const useLogin = ({ navigate }) => {
     }),
         {
             onSuccess: (data) => {
+                console.log(data);
                 addToLS("a-token", data?.data?.access)
                 addToLS("r-token", data?.data?.refresh)
                 navigate("/user-page")

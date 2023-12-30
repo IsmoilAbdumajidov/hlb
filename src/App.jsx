@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { getFromLS } from './utils/localStorage'
 import Course from './pages/userpage/Course'
 import Lessons from './pages/userpage/Lessons'
+import MyCourses from './pages/userpage/MyCourses'
 
 const App = () => {
 
@@ -19,7 +20,7 @@ const App = () => {
     <div>
 
       <ToastContainer
-        position="bottom-right"
+        position="top-right"
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -43,7 +44,8 @@ const App = () => {
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>
           <Route index element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
           <Route path='kurslar' element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
-          <Route path='kurslar/lessons/:kursId' element={<PrivateRoute path={"lessons"}><Lessons /></PrivateRoute>} />
+          <Route path='my-kurs' element={<PrivateRoute path={"my-kurs"}><MyCourses /></PrivateRoute>} />
+          <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"lessons"}><Lessons /></PrivateRoute>} />
         </Route>
       </Routes>
 
