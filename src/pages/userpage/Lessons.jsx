@@ -1,6 +1,6 @@
 import React from 'react'
 import AccordionCom from '../../components/accordion/AccordionCom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getLessonByID, subscribeCourse } from '../../hooks/CoursesApi';
 import TitleDashboard from '../../components/user-page/TitleDashboard';
 import { getFromLS } from '../../utils/localStorage';
@@ -8,19 +8,20 @@ import { jwtDecode } from 'jwt-decode';
 
 const Lessons = () => {
     const { kursSlug } = useParams()
+    const navigate = useNavigate()
     const { data } = getLessonByID(kursSlug)
-    console.log(kursSlug);
-    // console.log(data);
-    const id = jwtDecode(getFromLS("a-token")).student_id
-    console.log(jwtDecode(getFromLS("a-token")));
-    const { mutate } = subscribeCourse()
+    const { mutate } = subscribeCourse({navigate})
+    console.log(jwtDecode(getFromLS("a-token")))
     const clickHandler = () => {
+        const id = jwtDecode(getFromLS("a-token"))?.student_id
         mutate(
             {
                 student: id,
                 course: kursSlug
             }
         )
+
+        
     }
 
     return (

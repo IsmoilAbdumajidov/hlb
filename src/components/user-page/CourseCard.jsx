@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import {
   Card,
   CardHeader,
@@ -7,10 +7,13 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
+import ProgressBar from '../progressBar/ProgressBar';
 
-const CourseCard = ({item}) => {
+const CourseCard = ({ item }) => {
   const navigate = useNavigate()
   const param = useSearchParams()
+  const location = useLocation()
+  console.log(location);
   return (
     <Card className="w-full mt-5">
       <CardHeader color="blue-gray" className="relative mx-2 md:mx-3 aspect-[5/3]">
@@ -23,6 +26,7 @@ const CourseCard = ({item}) => {
         <Typography color="blue-gray">
           <span className='text-md'>{item.title}</span>
         </Typography>
+        {item?.statistic_bar!== undefined ? <ProgressBar bar={item?.statistic_bar} /> : ""}
       </CardBody>
       <CardFooter className="px-3 pt-0 pb-3 mt-auto">
         <button onClick={() => navigate(`/user-page/kurslar/lessons/${item.slug}`)} className='bg py-2 mt-3 w-full rounded-lg text-white'>Kirish</button>

@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { instance } from "../api/axios"
+import { toast } from "react-toastify"
 
 // get all courses card
 export const getAllCourses = ()=>{
@@ -14,21 +15,22 @@ export const getLessonByID = (id)=>{
         onError:(error)=>console.log(error),
     })
 }
+
 export const getMyCourses = (id)=>{
     return useQuery(["lessons"], ()=>instance.get(`student/student_courses/${id}/`), {refetchOnWindowFocus:false,
         onSuccess:(data)=>console.log(data),
         onError:(error)=>console.log(error),
     })
 }
-// kursga yozilish
-export const subscribeCourse = () => {
+// kursga d
+export const subscribeCourse = ({navigate}) => {
     return useMutation((data) => instance.post("student/add_course/", data, {
     }),
         {
             onSuccess: (data) => {
-                console.log(data);
-                toast.success("Kursga  o'tdingiz")
-                
+                // console.log(data);
+                navigate('/user-page/my-kurs')
+                toast.success("Kursga o'tdingiz")
             },
             onError: (error) => {
                 console.log(error);
