@@ -10,6 +10,20 @@ const UserPage = () => {
     const [isOpen, setIsOpen] = useState(false)
 
 
+    instance.interceptors.response.use((response) => {
+        return response;
+    }, (error) => {
+        console.log("error");
+        if ((error.response && error?.response?.status === 401) || error?.response?.status === 403) {
+            clearLS()
+            navigate("/register");
+        } else if (error.response && error.response.status === 500) {
+            console.log(error);
+        }
+
+        return Promise.reject(error);
+    });
+
     const logOut = () => {
         clearLS()
         navigate("/register")

@@ -1,4 +1,3 @@
-import Title from 'antd/es/skeleton/Title'
 import React from 'react'
 
 const TitleDashboard = ({ title }) => {

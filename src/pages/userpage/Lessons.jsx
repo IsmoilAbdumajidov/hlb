@@ -5,13 +5,16 @@ import { getLessonByID, subscribeCourse } from '../../hooks/CoursesApi';
 import TitleDashboard from '../../components/user-page/TitleDashboard';
 import { getFromLS } from '../../utils/localStorage';
 import { jwtDecode } from 'jwt-decode';
+import Spinner from '../../components/spinner/Spinner';
 
 const Lessons = () => {
     const { kursSlug } = useParams()
     const navigate = useNavigate()
-    const { data } = getLessonByID(kursSlug)
+    const { data, isFetching } = getLessonByID(kursSlug)
+
+    // console.log(isFetching);
     const { mutate } = subscribeCourse({navigate})
-    console.log(jwtDecode(getFromLS("a-token")))
+    // console.log(jwtDecode(getFromLS("a-token")))
     const clickHandler = () => {
         const id = jwtDecode(getFromLS("a-token"))?.student_id
         mutate(
@@ -26,6 +29,7 @@ const Lessons = () => {
 
     return (
         <div>
+            {isFetching && <Spinner/>}
             <div className='border-b flex justify-between mb-3 pb-3 items-center border-black/10'>
                 <TitleDashboard title={"Kurslar"} />
                 <button onClick={clickHandler} className='bg p-2 rounded text-white'>Kursga yozilish</button>

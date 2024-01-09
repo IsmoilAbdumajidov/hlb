@@ -13,6 +13,15 @@ import { getFromLS } from './utils/localStorage'
 import Course from './pages/userpage/Course'
 import Lessons from './pages/userpage/Lessons'
 import MyCourses from './pages/userpage/MyCourses'
+import MyLesson from './pages/userpage/MyLesson'
+import MyArticle from './pages/userpage/MyArticle'
+import { create } from 'zustand'
+
+export const Store = create((set) => ({
+  count: [],
+  update: (data) => set((state) =>  ({ count: data})),
+}))
+
 
 const App = () => {
 
@@ -45,7 +54,9 @@ const App = () => {
           <Route index element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
           <Route path='kurslar' element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
           <Route path='my-kurs' element={<PrivateRoute path={"my-kurs"}><MyCourses /></PrivateRoute>} />
-          <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"lessons"}><Lessons /></PrivateRoute>} />
+          <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
+          <Route path='my-kurs/lessons/:myKursSlug' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug"}><MyLesson /></PrivateRoute>} />
+          <Route path='my-kurs/lessons/:myKursSlug/article-detail' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug/article-detail"}><MyArticle /></PrivateRoute>} />
         </Route>
       </Routes>
 
