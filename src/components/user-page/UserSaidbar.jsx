@@ -11,7 +11,8 @@ const UserSaidbar = ({ isOpen, setIsOpen }) => {
     return (
         <div className={`${isOpen ? "-translate-x-48" : "translate-x-none"}   w-60  fixed transition transform ease-in-out duration-1000 z-50 flex h-screen bg-[#1E293B]`}>
             <div className={`${isOpen ? "translate-x-24 scale-x-0" : "translate-x-0"}  w-full -right-6 transition transform ease-in duration-300 flex items-center justify-between border-4 border-white  bg-[#1E293B]  absolute top-2 rounded-full h-12`}>
-                <div onClick={() => navigate(-1)} className='w-8 flex justify-center cursor-pointer ml-5'><LuArrowLeft className='text-white w-5 h-5 text-xl' /></div>
+                <div></div>
+                {/* <div onClick={() => navigate(-1)} className='w-8 flex justify-center cursor-pointer ml-5'><LuArrowLeft className='text-white w-5 h-5 text-xl' /></div> */}
                 <div className="flex items-center space-x-3 group bg_liner pl-10 pr-2 py-1 rounded-full text-white ">
                     <div className="transform ease-in-out duration-300 mr-12">
                         NERVE

@@ -35,6 +35,12 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 7px;
 
 }
+.rpv-core__display--block-medium{
+    display: none !important;
+}
+.rpv-core__display--block{
+    display: none !important;
+}
 
 ::-webkit-scrollbar-track {
     background: transparent;
