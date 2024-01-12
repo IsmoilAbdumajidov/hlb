@@ -4,11 +4,18 @@ import { instance } from '../../api/axios';
 import { clearLS } from '../../utils/localStorage';
 import UserSaidbar from '../../components/user-page/UserSaidbar';
 import UserNavbar from '../../components/user-page/UserNavbar';
+import { create } from 'zustand';
+
+
+export const idArticle = create((set) => ({
+    articleId: null,
+    updateId: (data) => set(() => ({ articleId: data })),
+}))
+
 
 const UserPage = () => {
     const navigate = useNavigate();
-    const [isOpen, setIsOpen] = useState(false)
-
+    const [isOpen, setIsOpen] = useState(true)
 
     instance.interceptors.response.use((response) => {
         return response;

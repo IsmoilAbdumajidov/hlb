@@ -16,27 +16,23 @@ export const getLessonByID = (id)=>{
     })
 }
 export const getMyLessonByID = (id)=>{
-    return useQuery(["lessons"], ()=>instance.get(`student/student_lessons/${id}/`), {refetchOnWindowFocus:false,
+    return useQuery(["mylessons"], ()=>instance.get(`student/student_lessons/${id}/`), {refetchOnWindowFocus:false,
         // onSuccess:(data)=>console.log(data),
         onError:(error)=>console.log(error),
     })
 }
 
 export const getMyCourses = (id)=>{
-    return useQuery(["lessons"], ()=>instance.get(`student/student_courses/${id}/`), {refetchOnWindowFocus:false,
+    return useQuery(["myCourse"], ()=>instance.get(`student/student_courses/${id}/`), {refetchOnWindowFocus:false,
         // onSuccess:(data)=>console.log(data),
         onError:(error)=>console.log(error),
     })
 }
 
 
-export const ArticleDetail = ({navigate,update,count})=>{
-    return useMutation((id)=>instance.get(`student/student_article/${id}/`), {refetchOnWindowFocus:false,enabled:false,
-        onSuccess:(data)=>{
-            // console.log(data);
-            update(data?.data)
-            navigate("article-detail")
-        },
+export const ArticleDetail = (id)=>{
+    return useQuery(["articleId"],()=>instance.get(`student/student_article/${id}/`), {refetchOnWindowFocus:false,
+        onSuccess:(data)=>console.log(data),
         onError:(error)=>console.log(error),
     })
 }

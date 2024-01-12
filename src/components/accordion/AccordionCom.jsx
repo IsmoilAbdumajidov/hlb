@@ -6,9 +6,7 @@ import {
 } from "@material-tailwind/react";
 import { IoIosArrowDown } from "react-icons/io";
 import { CiLock, CiUnlock } from "react-icons/ci";
-import { ArticleDetail } from '../../hooks/CoursesApi';
 import { useNavigate } from 'react-router-dom';
-import { Store } from '../../App';
 import { BsCheck2All } from "react-icons/bs";
 
 function Icon({ id, open }) {
@@ -18,24 +16,17 @@ function Icon({ id, open }) {
 
 }
 
+
 const AccordionCom = ({ data, parent }) => {
-    console.log();
     const [open, setOpen] = React.useState(0);
 
     const navigate = useNavigate()
 
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
-    const { update, count } = Store()
-
-
-
-    const { mutate } = ArticleDetail({ navigate, update, count })
-
-
     const clickHandler = (item) => {
         if (parent === "myLesson") {
-            mutate(item.id)
+            navigate(`${item.id}`)
         }
     }
     return (

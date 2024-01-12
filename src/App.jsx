@@ -8,20 +8,11 @@ import SignIn from './pages/login/SignIn'
 import UserPage from './pages/userpage/UserPage'
 import PrivateRoute from './router/PrivateRoute'
 import { ToastContainer } from 'react-toastify'
-import { useEffect } from 'react'
-import { getFromLS } from './utils/localStorage'
 import Course from './pages/userpage/Course'
 import Lessons from './pages/userpage/Lessons'
 import MyCourses from './pages/userpage/MyCourses'
 import MyLesson from './pages/userpage/MyLesson'
 import MyArticle from './pages/userpage/MyArticle'
-import { create } from 'zustand'
-
-export const Store = create((set) => ({
-  count: [],
-  update: (data) => set((state) =>  ({ count: data})),
-}))
-
 
 const App = () => {
 
@@ -56,7 +47,7 @@ const App = () => {
           <Route path='my-kurs' element={<PrivateRoute path={"my-kurs"}><MyCourses /></PrivateRoute>} />
           <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
           <Route path='my-kurs/lessons/:myKursSlug' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug"}><MyLesson /></PrivateRoute>} />
-          <Route path='my-kurs/lessons/:myKursSlug/article-detail' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug/article-detail"}><MyArticle /></PrivateRoute>} />
+          <Route path='my-kurs/lessons/:myKursSlug/:articleSlug' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug/:articleSlug"}><MyArticle /></PrivateRoute>} />
         </Route>
       </Routes>
 
