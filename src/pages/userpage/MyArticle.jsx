@@ -20,35 +20,38 @@ const MyArticle = () => {
 
 
 
-  // console.log(articleSlug);
-
   const { data, isFetching } = ArticleDetail(articleSlug)
+
+
+  // bu useEffect refresh berganda coiunt kelganjoyidan davom etishi uchun
   useEffect(() => {
-    if (!isFetching) {
-      if (read_time) {
-        setCount(read_time)
+    if (data?.data?.read_time) {
+      if (!read_time) {
+        addToLS(articleSlug, 0)
+        setCount(0)
       }
       else {
-        setCount(0)
-        addToLS(articleSlug, 0)
+        setCount(read_time)
       }
+    }
+    if (Number(read_time) === data?.data?.read_time) {
+      toast.success("Quiz qoshildi")
     }
   }, [isFetching])
 
-
-
+  // bu useEffect oyndan oynaga otganda sanoqni toxtatadi
   useEffect(() => {
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'visible' && data?.data?.read_time > Number(read_time)) {
+      if (document.visibilityState === 'visible') {
         setIsRunning(true)
-      } else if (data?.data?.read_time >= Number(read_time)) {
+      } else if (document.visibilityState === 'hidden') {
         setIsRunning(false)
       }
     });
 
   }, [document.visibilityState])
 
-  console.log(isRunning);
+  // bu useEffect sanoq ishlashi uchun va localStorag dagi sanoqni yangilash uchun
   useEffect(() => {
     let interval;
     if (isRunning && data?.data?.read_time > Number(read_time)) {
@@ -57,17 +60,12 @@ const MyArticle = () => {
         setCount(count + 1);
       }, 1000);
     }
-    else {
+    if (data?.data?.read_time <= Number(read_time)) {
       clearInterval(interval)
     }
-
-
-    if (count === data?.data?.read_time) {
-      toast.success("Quiz qoshildi")
-    }
-    //Clearing the interval
     return () => clearInterval(interval);
-  }, [count, isRunning]);
+  }, [count, isRunning, isFetching]);
+
 
   return (
     <div>
