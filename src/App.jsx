@@ -13,6 +13,7 @@ import Lessons from './pages/userpage/Lessons'
 import MyCourses from './pages/userpage/MyCourses'
 import MyLesson from './pages/userpage/MyLesson'
 import MyArticle from './pages/userpage/MyArticle'
+import Quiz from './components/user-page/Quiz'
 
 const App = () => {
 
@@ -48,6 +49,7 @@ const App = () => {
           <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
           <Route path='my-kurs/lessons/:myKursSlug' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug"}><MyLesson /></PrivateRoute>} />
           <Route path='my-kurs/lessons/:myKursSlug/:articleSlug' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug/:articleSlug"}><MyArticle /></PrivateRoute>} />
+          <Route path='my-kurs/lessons/:myKursSlug/:articleSlug/quiz' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug/:articleSlug/quiz"}><Quiz /></PrivateRoute>} />
         </Route>
       </Routes>
 

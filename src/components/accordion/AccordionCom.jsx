@@ -25,8 +25,8 @@ const AccordionCom = ({ data, parent }) => {
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
     const clickHandler = (item) => {
-        if (parent === "myLesson") {
-            navigate(`${item.id}`)
+        if (parent === "myLesson" && !item.lock) {
+            navigate(`${item.slug}`)
         }
     }
     return (
