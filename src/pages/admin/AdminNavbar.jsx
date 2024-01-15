@@ -1,11 +1,10 @@
 import React from 'react'
+import Tooltips from '../../components/tooltip/Tooltips'
 import { IoLogOutOutline } from "react-icons/io5";
-import Tooltips from '../tooltip/Tooltips';
-import { jwtDecode } from 'jwt-decode';
 import { getFromLS } from '../../utils/localStorage';
+import { jwtDecode } from 'jwt-decode';
 
-
-const UserNavbar = ({ logOut, isOpen }) => {
+const AdminNavbar = ({ logOut, isOpen }) => {
     const token = getFromLS("a-token") || ""
     const { full_name } = jwtDecode(token)
     console.log(full_name);
@@ -28,4 +27,4 @@ const UserNavbar = ({ logOut, isOpen }) => {
     )
 }
 
-export default UserNavbar
+export default AdminNavbar

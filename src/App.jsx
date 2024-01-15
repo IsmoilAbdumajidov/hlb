@@ -14,6 +14,7 @@ import MyCourses from './pages/userpage/MyCourses'
 import MyLesson from './pages/userpage/MyLesson'
 import MyArticle from './pages/userpage/MyArticle'
 import Quiz from './components/user-page/Quiz'
+import Admin from './pages/admin/Admin'
 
 const App = () => {
 
@@ -40,6 +41,9 @@ const App = () => {
           <Route index element={<SignIn />} />
           <Route path='sign-up' element={<SignUp />} />
           <Route path='sign-in' element={<SignIn />} />
+        </Route>
+        <Route path='/admin' element={<Admin/>}>
+          
         </Route>
 
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>

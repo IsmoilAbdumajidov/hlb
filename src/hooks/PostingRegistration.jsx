@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { instance } from "../api/axios"
 import { addToLS } from "../utils/localStorage";
 import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
+// import { jwtDecode } from "jwt-decode";
 
 export const postingRegister = ({ navigate }) => {
     return useMutation((data) => instance.post("accounts/register/", data, {
@@ -31,6 +31,7 @@ export const useLogin = ({ navigate }) => {
         {
             onSuccess: (data) => {
                 console.log(data);
+                // console.log(jwtDecode(`${data?.data?.access}`));
                 addToLS("a-token", data?.data?.access)
                 addToLS("r-token", data?.data?.refresh)
                 navigate("/user-page")
