@@ -2,6 +2,7 @@ import { Button } from '@material-tailwind/react'
 import React from 'react'
 import Module from '../../components/module/Module';
 import InputComponent from '../../components/input/InputComponent';
+import AccordionAdmin from '../../components/accordion/AccordionAdmin';
 
 const AddKurs = () => {
     const [open, setOpen] = React.useState(false);
@@ -26,14 +27,17 @@ const AddKurs = () => {
                     <span>Kurs Qo'shish</span>
                 </Button>
             </div>
-            <div className='border-b  border-gray-400 p-3 flex justify-between font-semibold text-md'>
-                <div className='flex gap-4'>
-                    <div>Rasm</div>
-                    <div>Sarlavha</div>
+            <div className='overflow-x-scroll'>
+                <div className='border-b px-3 text-sm font-semibold min-w-[900px] py-2 border-gray-400 grid  grid-cols-12'>
+                    <div className='flex col-span-11 gap-5 items-center'>
+                        <div className='w-16'>Rasm</div>
+                        <div>Sarlavha</div>
+                    </div>
+                    <div className='col-span-1'>Sozlamalar</div>
                 </div>
-                <div className='flex gap-2'>
-                    Sozlamalar
-                </div>
+                <AccordionAdmin title={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis veniam cumque unde."} />
+                <AccordionAdmin title={"Loremg elit. Quis veniam cumque unde."} />
+                <AccordionAdmin title={"Lorem ipsum dolor sit amet eniam cumque unde."} />
             </div>
 
         </div>
