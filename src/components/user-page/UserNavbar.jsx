@@ -13,14 +13,6 @@ const UserNavbar = ({ logOut, isOpen }) => {
 
             <div className="grow h-full flex items-center justify-center"></div>
             <MenuBar  logOut={logOut} />
-            {/* <div className="flex space-x-3 gap-10 items-center px-3">
-                <div className="hidden sm:block text-sm md:text-md text-black">{full_name}</div>
-                <Tooltips position={"bottom"} content={"LogOut"}>
-                    <div onClick={() => logOut()} className='flex w-9 h-9 rounded-md justify-center bg text-2xl text-white items-center'>
-                        <IoLogOutOutline />
-                    </div>
-                </Tooltips>
-            </div> */}
         </div>
     )
 }

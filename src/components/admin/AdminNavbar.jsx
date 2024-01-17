@@ -1,7 +1,7 @@
 import React from 'react'
 // import Tooltips from '../../components/tooltip/Tooltips'
 // import { IoLogOutOutline } from "react-icons/io5";
-import MenuBar from '../../components/menuBar/MenuBar';
+import MenuBar from '../menuBar/MenuBar';
 
 const AdminNavbar = ({ logOut, isOpen }) => {
 

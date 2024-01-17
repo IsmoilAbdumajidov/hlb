@@ -4,7 +4,7 @@ import { LuArrowLeft } from "react-icons/lu";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { IoBookOutline } from "react-icons/io5";
-import Tooltips from '../../components/tooltip/Tooltips';
+import Tooltips from '../tooltip/Tooltips';
 
 
 const AdminSaidbar = ({isOpen,setIsOpen}) => {

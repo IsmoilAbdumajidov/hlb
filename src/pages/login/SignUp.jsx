@@ -4,6 +4,7 @@ const inputStyle = "w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"
 import Input from 'react-phone-number-input/input'
 import PassInput from '../../components/input/PassInput'
 import { useNavigate } from 'react-router-dom'
+import InputComponent from '../../components/input/InputComponent'
 
 const initialValue = {
     user: {
@@ -53,11 +54,13 @@ const SignUp = () => {
             <form onSubmit={ischekked ? registerHandler : undefined} className='flex flex-col gap-4'>
                 <div>
                     <label className='text-sm' htmlFor="fio">F.I.O</label>
-                    <input onChange={(e) => inputHandler(e.target.name, e.target.value, false)} name='full_name' className={inputStyle} type="text" id='fio' placeholder='F.I.O ni kiring' required />
+                    {/* <input onChange={(e) => inputHandler(e.target.name, e.target.value, false)} name='full_name' className={inputStyle} type="text" id='fio' placeholder='F.I.O ni kiring' required /> */}
+                    <InputComponent onChange={(e) => inputHandler(e.target.name, e.target.value, false)} name='full_name' type="text" id='fio' placeholder='F.I.O ni kiring' required={true} />
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="username">Username</label>
-                    <input onChange={(e) => inputHandler(e.target.name, e.target.value.toLowerCase(), true)} name='username' className={`${inputStyle} lowercase`} type="text" id='username' placeholder='Usernameni kiring' required />
+                    {/* <input onChange={(e) => inputHandler(e.target.name, e.target.value.toLowerCase(), true)} name='username' className={`${inputStyle} lowercase`} type="text" id='username' placeholder='Usernameni kiring' required /> */}
+                    <InputComponent onChange={(e) => inputHandler(e.target.name, e.target.value.toLowerCase(), true)} name='username' className={`lowercase`} type="text" id='username' placeholder='Usernameni kiring' required={true} />
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="number">Telefon</label>

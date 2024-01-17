@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PassInput from '../../components/input/PassInput'
 import { useLogin } from '../../hooks/PostingRegistration'
 import { useNavigate } from 'react-router-dom'
+import InputComponent from '../../components/input/InputComponent'
 
 const inputStyle = "w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"
 
@@ -29,7 +30,7 @@ const SignIn = () => {
             <form onSubmit={onSubmit} className='flex flex-col gap-6'>
                 <div>
                     <label className='text-sm' htmlFor="username">Username</label>
-                    <input name='username' onChange={inputHandler} className={`${inputStyle} lowercase`} type="text" id='username' placeholder='Usernameni kiring' />
+                    <InputComponent name='username' onChange={inputHandler} className={`lowercase`} type="text" id='username' placeholder='Usernameni kiring' />
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="password">Parol</label>

@@ -12,8 +12,8 @@ import { jwtDecode } from 'jwt-decode';
 import { getFromLS } from '../../utils/localStorage';
 import { IoLogOutOutline } from "react-icons/io5";
 
-const MenuBar = ({logOut}) => {
-    const token = getFromLS("a-token") || ""
+const MenuBar = ({ logOut }) => {
+    const token = getFromLS("a-token") || "";
     const { full_name } = jwtDecode(token)
     console.log(full_name);
     return (
@@ -28,13 +28,13 @@ const MenuBar = ({logOut}) => {
             </MenuHandler>
             <MenuList className='p-1'>
                 <MenuItem className="flex items-center gap-2">
-                <FaRegUser />
-                    <Typography onClick={() => logOut()}  variant="small" className="font-medium">
-                        {full_name}
+                    <FaRegUser />
+                    <Typography  variant="small" className="font-medium">
+                        {full_name || "John Doe"}
                     </Typography>
                 </MenuItem>
-                <MenuItem className="flex items-center gap-2">
-                <IoLogOutOutline />
+                <MenuItem onClick={() => logOut()} className="flex items-center gap-2">
+                    <IoLogOutOutline />
                     <Typography variant="small" className="font-medium">
                         LogOut
                     </Typography>
