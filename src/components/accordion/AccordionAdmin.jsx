@@ -39,6 +39,7 @@ const AccordionAdmin = ({ title }) => {
                             <VscTrash className='w-6 h-6 text-red-600' />
                         </div>
                         <AccordionHeader className=' p-0 w-max border-n' onClick={() => handleOpen(1)}>
+                            <h1></h1>
                         </AccordionHeader>
                     </div>
                 </div>

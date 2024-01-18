@@ -1,24 +1,63 @@
 import { Button } from '@material-tailwind/react'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import Module from '../../components/module/Module';
 import InputComponent from '../../components/input/InputComponent';
 import AccordionAdmin from '../../components/accordion/AccordionAdmin';
+import { postCourse } from '../../hooks/AdminApi';
+import { instance } from '../../api/axios';
 
 const AddKurs = () => {
     const [open, setOpen] = React.useState(false);
+    const title_course = useRef()
+    const file_course = useRef()
+    const [file, setFile] = useState('')
+    const [title, setTitle] = useState('')
+
+    // const inputHandler = (e) => {
+    //     const [file, setFile] = useState('')
+    //     const [title, setTitle] = useState('')
+    // }
+    // const { mutate } = postCourse()
+    const onSubmit = async () => {
+        const formData = new FormData();
+        formData.append('image', file);
+        console.log(file);
+        try {
+            console.log(formData);
+            const resp = await instance.post("https://ebf0-188-113-248-5.ngrok-free.app/api/admin/add_course/",
+                {
+                    poster_image: file,
+                    title: title
+                },
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        // "Content-Type": "application/json", 
+                    },
+                }
+            )
+            setFile(null)
+
+            console.log(resp);
+        } catch (error) {
+
+        }
+    }
+
+
 
     const handleOpen = () => setOpen(!open);
     return (
         <div className='mt-10'>
-            <Module open={open} handleOpen={handleOpen} title={"Kurs qo'shish"}>
+            <Module onSubmit={onSubmit} open={open} handleOpen={handleOpen} title={"Kurs qo'shish"}>
                 <form className='flex flex-col gap-6'>
                     <div>
                         <label className='text-sm' htmlFor="title_course">Username</label>
-                        <InputComponent id={"title_course"} placeholder={"Kurs sarlavhasini kiriting"} />
+                        <InputComponent onChange={((e) => setTitle(e.target.value))} refProp={title_course} id={"title_course"} placeholder={"Kurs sarlavhasini kiriting"} />
                     </div>
                     <div>
                         <label className='text-sm' htmlFor="file_course">Username</label>
-                        <InputComponent id={"file_course"} type={"file"} />
+                        <InputComponent onChange={(e) => setFile(e.target.files[0])} refProp={file_course} id={"file_course"} type={"file"} />
                     </div>
                 </form>
             </Module>

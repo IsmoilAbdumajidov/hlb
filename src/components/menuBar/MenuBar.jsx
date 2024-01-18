@@ -11,6 +11,7 @@ import { FaRegUser } from "react-icons/fa6";
 import { jwtDecode } from 'jwt-decode';
 import { getFromLS } from '../../utils/localStorage';
 import { IoLogOutOutline } from "react-icons/io5";
+import { Link} from 'react-router-dom';
 
 const MenuBar = ({ logOut }) => {
     const token = getFromLS("a-token") || "";
@@ -29,7 +30,7 @@ const MenuBar = ({ logOut }) => {
             <MenuList className='p-1'>
                 <MenuItem className="flex items-center gap-2">
                     <FaRegUser />
-                    <Typography  variant="small" className="font-medium">
+                    <Typography variant="small" className="font-medium">
                         {full_name || "John Doe"}
                     </Typography>
                 </MenuItem>
@@ -39,8 +40,16 @@ const MenuBar = ({ logOut }) => {
                         LogOut
                     </Typography>
                 </MenuItem>
+                <MenuItem >
+                    <Link className='flex items-center gap-2' to={"/admin"}>
+                        <FaRegUser />
+                        <Typography variant="small" className="font-medium">
+                            Admin Panel
+                        </Typography>
+                    </Link>
+                </MenuItem>
             </MenuList>
-        </Menu>
+        </Menu >
     )
 }
 

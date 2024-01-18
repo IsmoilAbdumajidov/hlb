@@ -7,7 +7,7 @@ import {
     DialogFooter,
 } from "@material-tailwind/react";
 
-const Module = ({ children,open, title, handleOpen }) => {
+const Module = ({ children,open, title, handleOpen,onSubmit }) => {
 
     return (
         <>
@@ -21,7 +21,7 @@ const Module = ({ children,open, title, handleOpen }) => {
                     <Button variant="text" color="red" onClick={handleOpen} className="mr-1">
                         <span>Cancel</span>
                     </Button>
-                    <Button variant="gradient" color="green" onClick={handleOpen}>
+                    <Button variant="gradient" color="green" onClick={onSubmit}>
                         <span>Confirm</span>
                     </Button>
                 </DialogFooter>
