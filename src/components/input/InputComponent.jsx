@@ -1,8 +1,9 @@
+import { Field } from 'formik'
 import React from 'react'
 
-const InputComponent = ({name,onChange,className,type,id,placeholder,required,refProp}) => {
+const InputComponent = ({name,onChange,className,typeInput,id,placeholder,required,refProp}) => {
   return (
-    <input name={name || ""} ref={refProp || null} onChange={onChange || null} className={`${className || ""} w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]`} type={type} id={id || ""} placeholder={placeholder || ""} required={required || ""} />
+    <input type={typeInput} name={name || ""} onChange={onChange}  className={`${className || ""} w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]`}  id={id || ""} placeholder={placeholder || ""} />
   )
 }
 
