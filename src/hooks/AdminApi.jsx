@@ -57,6 +57,50 @@ export const postLesson = () => {
     )
 
 }
+export const patchCourse = () => {
+    const queryClient = useQueryClient()
+    return useMutation((data) => instance.patch(`admin/update_course/${data.id}/`, data,
+        {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        }
+        ,
+    ),
+        {
+            onSuccess: (data) => {
+                queryClient.invalidateQueries({ queryKey: ["courseAdmin"] });
+                console.log(data);
+                // navigate('/user-page/my-kurs')
+                toast.success("Yangi dars qo'shildi")
+            },
+            onError: (error) => {
+                console.log(error);
+                toast.error("Qandaydir xatolik bor")
+            }
+        }
+    )
+
+}
+export const patchLesson = () => {
+    const queryClient = useQueryClient()
+    return useMutation((data) => instance.patch(`admin/update_lesson/${data.id}/`, data,
+    ),
+        {
+            onSuccess: (data) => {
+                queryClient.invalidateQueries({ queryKey: ["courseAdmin"] });
+                console.log(data);
+                // navigate('/user-page/my-kurs')
+                toast.success("Yangi dars qo'shildi")
+            },
+            onError: (error) => {
+                console.log(error);
+                toast.error("Qandaydir xatolik bor")
+            }
+        }
+    )
+
+}
 export const deleteLesson = () => {
     const queryClient = useQueryClient()
     return useMutation((data) => instance.delete(`admin/delete_lesson/${data}/`,

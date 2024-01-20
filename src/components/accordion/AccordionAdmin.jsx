@@ -10,7 +10,7 @@ import { CiEdit } from "react-icons/ci";
 import { VscTrash } from "react-icons/vsc";
 import Module from '../module/Module';
 import InputComponent from '../input/InputComponent';
-import { deleteCourse, deleteLesson, postLesson } from '../../hooks/AdminApi';
+import { deleteCourse, deleteLesson, patchLesson, postLesson } from '../../hooks/AdminApi';
 function Icon({ id, open }) {
     return (
         <IoIosArrowDown className={`${id === open ? "rotate-180" : ""} h-5 w-5 transition-transform`} />
@@ -18,28 +18,42 @@ function Icon({ id, open }) {
 
 }
 
-const AccordionAdmin = ({ data }) => {
+const AccordionAdmin = ({ data, edit, setIsPost }) => {
     const [open, setOpen] = React.useState(0);
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
     const [openModule, setOpenModule] = React.useState(false);
-    const [title, setTitle] = useState("")
-    const [isPaid, setIspaid] = useState(false)
-    const [price, setPrice] = useState("")
+    const [initialValues, setInitialValues] = useState({ title: "", isPaid: false, price: "" })
+    const [post, setPost] = useState(false)
     // console.log(data);
     // console.log(title);
     // console.log(price);
     // console.log(isPaid);
 
     const { mutate } = postLesson()
+    const {mutate:patchMutate}=patchLesson()
     const onSubmit = (e) => {
         e.preventDefault()
-        mutate({
-            course: data?.id,
-            number: data?.lessons.length + 1,
-            title: title,
-            price: +price,
-            paid: isPaid
-        })
+
+        if (post) {
+            mutate({
+                course: data?.id,
+                number: data?.lessons.length + 1,
+                title: initialValues.title,
+                price: +initialValues.price,
+                paid: initialValues.isPaid
+            })
+        }
+        else {
+            console.log(initialValues);
+            patchMutate(
+                {   
+                    id:initialValues.id,
+                    title: initialValues.title,
+                    price: +initialValues.price,
+                    paid: initialValues.isPaid
+                }
+            )
+        }
     }
     const { mutate: deleteL } = deleteLesson()
     const { mutate: deleteC } = deleteCourse()
@@ -52,8 +66,14 @@ const AccordionAdmin = ({ data }) => {
             deleteL(id)
         }
     }
+    const EditLesson = (element) => {
+        // console.log(element);
+        setInitialValues({ id: element.id, title: element.title,price:element.price,isPaid:element.paid })
+        setOpenModule(true)
+    }
 
-    const handleOpenModule = () => setOpenModule(!openModule);
+
+    const handleOpenModule = () => { setOpenModule(!openModule),setPost(true), setInitialValues("") };
     return (
         <>
             <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
@@ -66,7 +86,7 @@ const AccordionAdmin = ({ data }) => {
                     </div>
                     <div className='flex col-span-1 justify-end items-center'>
                         <div className='flex gap-5'>
-                            <CiEdit className='w-6 h-6 text-green-500' />
+                            <CiEdit onClick={() => { edit(data), setIsPost(false) }} className='w-6 h-6 text-green-500' />
                             <VscTrash onClick={() => deleteHandler("course", data?.id)} className='w-6 h-6 text-red-600' />
                         </div>
                         <AccordionHeader className=' p-0 w-max border-n' onClick={() => handleOpen(1)}>
@@ -79,20 +99,20 @@ const AccordionAdmin = ({ data }) => {
                         <form onSubmit={onSubmit} className='flex flex-col gap-6'>
                             <div>
                                 <label className='text-sm' htmlFor="title_lesson">Dars sarlavhasi</label>
-                                <InputComponent onChange={(e) => setTitle(e.target.value)} id={"title_lesson"} placeholder={"Kurs sarlavhasini kiriting"} />
+                                <InputComponent value={initialValues.title} onChange={(e) => setInitialValues({ ...initialValues, title: e.target.value })} id={"title_lesson"} placeholder={"Kurs sarlavhasini kiriting"} />
                             </div>
                             <div className=''>
-                                <label className='text-sm' htmlFor="file_course"></label>
-                                <InputComponent className={"w-max"} onChange={(e) => setIspaid(e.target.checked)} typeInput={"checkbox"} id={"file_course"} type={"file"} />
+                                <label className='text-sm' htmlFor="ispaid"></label>
+                                <InputComponent checked={initialValues.isPaid} className={"w-max"} onChange={(e) => setInitialValues({ ...initialValues, isPaid: e.target.checked })} typeInput={"checkbox"} id={"ispaid"} type={"file"} />
                             </div>
-                            {isPaid &&
+                            {initialValues.isPaid &&
                                 <div>
-                                    <label className='text-sm' htmlFor="file_course">Username</label>
-                                    <InputComponent onChange={(e) => setPrice(e.target.value)} typeInput={"text"} id={"file_course"} type={"file"} />
+                                    <label className='text-sm' htmlFor="price">Username</label>
+                                    <InputComponent value={initialValues.price} onChange={(e) => setInitialValues({ ...initialValues, price: e.target.value })} typeInput={"text"} id={"price"} />
                                 </div>
                             }
                             <div className='flex justify-end gap-3'>
-                                <Button variant="text" color="red" onClick={handleOpen} className="mr-1">
+                                <Button variant="text" color="red" onClick={handleOpenModule} className="mr-1">
                                     <span>Cancel</span>
                                 </Button>
                                 <Button type='submit' variant="gradient" color="green">
@@ -114,10 +134,10 @@ const AccordionAdmin = ({ data }) => {
                                     <div>{item.title}</div>
                                     <div className='flex gap-5'>
                                         <div className='bg-green-500 p-1 rounded'>
-                                            <CiEdit className='w-6 h-6 text-white' />
+                                            <CiEdit onClick={() => { EditLesson(item), setPost(false) }} className='w-6 h-6 text-white' />
                                         </div>
                                         <div className='bg-red-600 w-max p-1 rounded'>
-                                            <VscTrash onClick={()=>deleteHandler("lesson", item.id)} className='w-6 h-6 text-white' />
+                                            <VscTrash onClick={() => deleteHandler("lesson", item.id)} className='w-6 h-6 text-white' />
                                         </div>
                                     </div>
                                 </div>

@@ -30,7 +30,7 @@ const SignIn = () => {
             <form onSubmit={onSubmit} className='flex flex-col gap-6'>
                 <div>
                     <label className='text-sm' htmlFor="username">Username</label>
-                    <InputComponent name='username' onChange={inputHandler} className={`lowercase`} type="text" id='username' placeholder='Usernameni kiring' />
+                    <InputComponent value={data.username} name='username' onChange={inputHandler} className={`lowercase`} typeInput="text" id='username' placeholder='Usernameni kiring' />
                 </div>
                 <div>
                     <label className='text-sm' htmlFor="password">Parol</label>

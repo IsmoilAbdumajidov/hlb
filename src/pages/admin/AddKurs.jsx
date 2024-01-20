@@ -3,30 +3,31 @@ import React, { useEffect, useRef, useState } from 'react'
 import Module from '../../components/module/Module';
 import InputComponent from '../../components/input/InputComponent';
 import AccordionAdmin from '../../components/accordion/AccordionAdmin';
-import { getCourseAdmin, postCourse } from '../../hooks/AdminApi';
+import { getCourseAdmin, patchCourse, postCourse } from '../../hooks/AdminApi';
 import { instance } from '../../api/axios';
 import { ErrorMessage, Form, Formik } from 'formik';
 
-const validate = values => {
-    let errors = {}
+// const validate = values => {
+//     let errors = {}
 
-    // username
-    if (!values.title) {
-        errors.title = "Маълумотни тўлдиринг"
-    }
+//     // username
+//     if (!values.title) {
+//         errors.title = "Маълумотни тўлдиринг"
+//     }
 
 
-    return errors
-}
+//     return errors
+// }
 
 const AddKurs = () => {
     const [open, setOpen] = React.useState(false);
-    const [file, setFile] = useState('')
-    const [title, setTitle] = useState('')
-    const refinp = useRef()
+    const [isPost, setIsPost] = useState("")
+    const [initialValues, setInitialValues] = useState({ title: "", poster_image: "" })
 
     const { mutate, data, error, isSuccess } = postCourse()
     const { data: courseData } = getCourseAdmin()
+    const {mutate:patchMutate}=patchCourse()
+
 
     // const onSubmit = async () => {
     //     const formData = new FormData();
@@ -38,53 +39,69 @@ const AddKurs = () => {
     //         }
     //     )
     // }
-    const onSubmit = (value) => {
+
+
+    const onSubmit = () => {
         const formData = new FormData();
-        formData.append('image', file);
-        mutate(
-            {
-                poster_image: file,
-                title: value.title
-            })
+        formData.append('image', initialValues.poster_image);
+        if (isPost) {
+            mutate(
+                {
+                    poster_image: initialValues.poster_image,
+                    title: initialValues.title
+                })
+        }
+        else {
+            console.log(initialValues);
+            patchMutate(
+                {
+                    title:initialValues.title,
+                    poster_image:initialValues.poster_image,
+                    id:initialValues.id
+                }
+            )
+        }
+
 
     }
 
-    const initialValues = {
-        title: "",
-        poster_image: ""
-    }
+    // console.log(initialValues);
 
     useEffect(() => {
         if (isSuccess) {
             setOpen(false)
         }
     }, [isSuccess])
+    const EditCourse = (element) => {
+        // console.log(element);
+        setInitialValues({id:element.id, title: element.title})
+        setOpen(true)
+    }
 
 
-
-    const handleOpen = () => setOpen(!open);
+    const handleOpen = () => { setOpen(!open), setIsPost(true), setInitialValues("") };
     return (
         <div className='mt-10'>
             <Module open={open} handleOpen={handleOpen} title={"Kurs qo'shish"}>
-                <Formik onSubmit={onSubmit} initialValues={initialValues} validate={validate}>
+                <Formik onSubmit={onSubmit} initialValues={initialValues} >
                     {formik => {
                         return (
                             <Form className='flex flex-col gap-6'>
                                 <div>
                                     <label className='text-sm' htmlFor="title_course">Username</label>
-                                    <InputComponent typeInput={"text"} name={"title"} id={"title_course"} placeholder={"Kurs sarlavhasini kiriting"} />
+                                    <InputComponent value={initialValues.title} onChange={(e) => setInitialValues({ ...initialValues, title: e.target.value })} typeInput={"text"} name={"title"} id={"title_course"} placeholder={"Kurs sarlavhasini kiriting"} />
                                     <ErrorMessage className='text-red-500 normal-case text-sm' component="div" name="title" />
                                 </div>
                                 <div>
                                     <label className='text-sm' htmlFor="file_course">File</label>
-                                    <input onChange={(e) => setFile(e.target.files[0])} type={"file"} name={"poster_image"} id={"file_course"} className={`w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]`} />
+                                    <input onChange={(e) => setInitialValues({ ...initialValues, poster_image: e.target.files[0] })} type={"file"} name={"poster_image"} id={"file_course"} className={`w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]`} />
 
                                 </div>
                                 <div className='flex justify-end gap-3'>
                                     <Button variant="text" color="red" onClick={handleOpen} className="mr-1">
                                         <span>Cancel</span>
                                     </Button>
-                                    <Button disabled={!formik.isValid || !file} type='submit' variant="gradient" color="green" onClick={onSubmit}>
+                                    <Button disabled={!initialValues.title} type='submit' variant="gradient" color="green">
                                         <span>Confirm</span>
                                     </Button>
                                 </div>
@@ -120,7 +137,7 @@ const AddKurs = () => {
                     </div>
                     <div>
                         {courseData?.data.map((data, i) => (
-                            <AccordionAdmin key={i} data={data} />
+                            <AccordionAdmin setIsPost={setIsPost} edit={EditCourse} key={i} data={data} />
                         ))}
                     </div>
                 </div>
