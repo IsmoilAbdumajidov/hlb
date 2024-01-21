@@ -39,7 +39,7 @@ const AccordionAdmin = ({ data, edit, setIsPost }) => {
                 course: data?.id,
                 number: data?.lessons.length + 1,
                 title: initialValues.title,
-                price: +initialValues.price,
+                price: initialValues.price,
                 paid: initialValues.isPaid
             })
         }
@@ -94,7 +94,7 @@ const AccordionAdmin = ({ data, edit, setIsPost }) => {
                         </AccordionHeader>
                     </div>
                 </div>
-                <AccordionBody className="border-b flex flex-col gap-2 px-3 py-2 border-gray-400">
+                <AccordionBody className="border-b  flex flex-col gap-2 px-3 py-2 border-gray-400">
                     <Module open={openModule} handleOpen={handleOpenModule} title={"Dars qo'shish"}>
                         <form onSubmit={onSubmit} className='flex flex-col gap-6'>
                             <div>
@@ -108,7 +108,7 @@ const AccordionAdmin = ({ data, edit, setIsPost }) => {
                             {initialValues.isPaid &&
                                 <div>
                                     <label className='text-sm' htmlFor="price">Username</label>
-                                    <InputComponent value={initialValues.price} onChange={(e) => setInitialValues({ ...initialValues, price: e.target.value })} typeInput={"text"} id={"price"} />
+                                    <InputComponent value={initialValues.price} onChange={(e) => setInitialValues({ ...initialValues, price: +e.target.value })} typeInput={"number"} id={"price"} />
                                 </div>
                             }
                             <div className='flex justify-end gap-3'>

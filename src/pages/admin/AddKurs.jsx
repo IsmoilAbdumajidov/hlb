@@ -135,7 +135,7 @@ const AddKurs = () => {
                         </div>
                         <div className='col-span-1'>Sozlamalar</div>
                     </div>
-                    <div>
+                    <div className='min-w-[900px]'>
                         {courseData?.data.map((data, i) => (
                             <AccordionAdmin setIsPost={setIsPost} edit={EditCourse} key={i} data={data} />
                         ))}
