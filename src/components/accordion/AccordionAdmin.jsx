@@ -11,26 +11,25 @@ import { VscTrash } from "react-icons/vsc";
 import Module from '../module/Module';
 import InputComponent from '../input/InputComponent';
 import { deleteCourse, deleteLesson, patchLesson, postLesson } from '../../hooks/AdminApi';
+import AccHeaderKurs from '../admin/AddData/AddKurs/AccHeaderKurs';
+import AddLessonForm from '../admin/AddData/AddKurs/AddLessonForm';
 function Icon({ id, open }) {
     return (
         <IoIosArrowDown className={`${id === open ? "rotate-180" : ""} h-5 w-5 transition-transform`} />
     );
-
 }
 
 const AccordionAdmin = ({ data, edit, setIsPost }) => {
-    const [open, setOpen] = React.useState(0);
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
+    const [open, setOpen] = React.useState(0);
     const [openModule, setOpenModule] = React.useState(false);
     const [initialValues, setInitialValues] = useState({ title: "", isPaid: false, price: "" })
     const [post, setPost] = useState(false)
-    // console.log(data);
-    // console.log(title);
-    // console.log(price);
-    // console.log(isPaid);
+
 
     const { mutate } = postLesson()
-    const {mutate:patchMutate}=patchLesson()
+    const { mutate: patchMutate } = patchLesson()
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -46,8 +45,8 @@ const AccordionAdmin = ({ data, edit, setIsPost }) => {
         else {
             console.log(initialValues);
             patchMutate(
-                {   
-                    id:initialValues.id,
+                {
+                    id: initialValues.id,
                     title: initialValues.title,
                     price: +initialValues.price,
                     paid: initialValues.isPaid
@@ -68,59 +67,22 @@ const AccordionAdmin = ({ data, edit, setIsPost }) => {
     }
     const EditLesson = (element) => {
         // console.log(element);
-        setInitialValues({ id: element.id, title: element.title,price:element.price,isPaid:element.paid })
+        setInitialValues({ id: element.id, title: element.title, price: element.price, isPaid: element.paid })
         setOpenModule(true)
     }
 
 
-    const handleOpenModule = () => { setOpenModule(!openModule),setPost(true), setInitialValues("") };
+    const handleOpenModule = () => { setOpenModule(!openModule), setPost(true), setInitialValues("") };
     return (
         <>
-            <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
-                <div className='grid grid-cols-12  min-w-[900px] w-full px-3 py-2 items-center border-b border-gray-400'>
-                    <div className='col-span-11 flex items-center gap-5'>
-                        <img className='w-16 h-14 rounded object-cover' src={data?.poster_image} alt="" />
-                        <div>
-                            {data?.title}
-                        </div>
-                    </div>
-                    <div className='flex col-span-1 justify-end items-center'>
-                        <div className='flex gap-5'>
-                            <CiEdit onClick={() => { edit(data), setIsPost(false) }} className='w-6 h-6 text-green-500' />
-                            <VscTrash onClick={() => deleteHandler("course", data?.id)} className='w-6 h-6 text-red-600' />
-                        </div>
-                        <AccordionHeader className=' p-0 w-max border-n' onClick={() => handleOpen(1)}>
-                            <h1></h1>
-                        </AccordionHeader>
-                    </div>
-                </div>
+            <Accordion open={open === 1}>
+                <AccordionHeader className='flex  min-w-[900px] w-full  py-2 items-center border-b border-gray-400'>
+                    <AccHeaderKurs data={data} edit={edit} deleteHandler={deleteHandler} setIsPost={setIsPost} handleOpen={handleOpen}>
+                        <Icon id={1} open={open} />
+                    </AccHeaderKurs>
+                </AccordionHeader>
                 <AccordionBody className="border-b  flex flex-col gap-2 px-3 py-2 border-gray-400">
-                    <Module open={openModule} handleOpen={handleOpenModule} title={"Dars qo'shish"}>
-                        <form onSubmit={onSubmit} className='flex flex-col gap-6'>
-                            <div>
-                                <label className='text-sm' htmlFor="title_lesson">Dars sarlavhasi</label>
-                                <InputComponent value={initialValues.title} onChange={(e) => setInitialValues({ ...initialValues, title: e.target.value })} id={"title_lesson"} placeholder={"Kurs sarlavhasini kiriting"} />
-                            </div>
-                            <div className=''>
-                                <label className='text-sm' htmlFor="ispaid"></label>
-                                <InputComponent checked={initialValues.isPaid} className={"w-max"} onChange={(e) => setInitialValues({ ...initialValues, isPaid: e.target.checked })} typeInput={"checkbox"} id={"ispaid"} type={"file"} />
-                            </div>
-                            {initialValues.isPaid &&
-                                <div>
-                                    <label className='text-sm' htmlFor="price">Username</label>
-                                    <InputComponent value={initialValues.price} onChange={(e) => setInitialValues({ ...initialValues, price: +e.target.value })} typeInput={"number"} id={"price"} />
-                                </div>
-                            }
-                            <div className='flex justify-end gap-3'>
-                                <Button variant="text" color="red" onClick={handleOpenModule} className="mr-1">
-                                    <span>Cancel</span>
-                                </Button>
-                                <Button type='submit' variant="gradient" color="green">
-                                    <span>Confirm</span>
-                                </Button>
-                            </div>
-                        </form>
-                    </Module>
+                    <AddLessonForm onSubmit={onSubmit} setInitialValues={setInitialValues} initialValues={initialValues} handleOpen={handleOpenModule} open={openModule} />
                     <div className='flex justify-between w-full items-center'>
                         <div className='text-black font-semibold'>Darslar:</div>
                         <Button variant="gradient" color="green" onClick={handleOpenModule}>

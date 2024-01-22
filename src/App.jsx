@@ -15,7 +15,7 @@ import MyLesson from './pages/userpage/MyLesson'
 import MyArticle from './pages/userpage/MyArticle'
 import Quiz from './components/user-page/Quiz'
 import Admin from './pages/admin/Admin'
-import AddKurs from './pages/admin/AddKurs'
+import AddData from './pages/admin/AddData'
 
 const App = () => {
 
@@ -44,8 +44,8 @@ const App = () => {
           <Route path='sign-in' element={<SignIn />} />
         </Route>
         <Route path='/admin' element={<Admin/>}>
-          <Route index element={<AddKurs/>}/>
-          <Route path='add-kurs' element={<AddKurs/>}/>
+          <Route index element={<AddData/>}/>
+          <Route path='content-joylash' element={<AddData/>}/>
         </Route>
 
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>

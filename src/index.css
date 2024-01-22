@@ -78,6 +78,7 @@ input[type="number"]::-webkit-inner-spin-button {
     background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
     background-size: 200% auto;
     transition: all .5s ease-in-out;
+    color: #fff;
 }
 
 .bg_liner {
