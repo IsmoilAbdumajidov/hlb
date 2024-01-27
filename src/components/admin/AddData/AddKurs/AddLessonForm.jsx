@@ -17,7 +17,7 @@ const AddLessonForm = ({setInitialValues,initialValues,handleOpen,onSubmit,open,
                 </div>
                 {initialValues.isPaid &&
                     <div>
-                        <label className='text-sm' htmlFor="price">Username</label>
+                        <label className='text-sm' htmlFor="price">Dars narxi</label>
                         <InputComponent value={initialValues.price} onChange={(e) => setInitialValues({ ...initialValues, price: +e.target.value })} typeInput={"number"} id={"price"} />
                     </div>
                 }

@@ -6,10 +6,12 @@ const Quiz = () => {
     const { articleSlug } = useParams()
 
     const { data } = getQuiz(articleSlug)
+    console.log(articleSlug);
 
     return (
         <div>
-            {data?.data.map((item, i) => (
+            {data?.data.length ?
+            data?.data?.map((item, i) => (
                 <div key={i}>
                     <h3 className='text-md first-letter:uppercase font-semibold'>{item.question}?</h3>
                     <ol>
@@ -31,7 +33,7 @@ const Quiz = () => {
                         </div>
                     </ol>
                 </div>
-            ))}
+            )):""}
         </div>
     )
 }

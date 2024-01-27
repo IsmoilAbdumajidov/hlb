@@ -33,7 +33,7 @@ const MyArticle = () => {
 
   // bu useEffect refresh berganda coiunt kelganjoyidan davom etishi uchun
   useEffect(() => {
-    if (data?.data?.article.read_time) {
+    if (data?.data?.article?.read_time) {
       if (!read_time) {
         addToLS(articleSlug, 0)
         setCount(0)
@@ -59,14 +59,14 @@ const MyArticle = () => {
   // bu useEffect sanoq ishlashi uchun va localStorag dagi sanoqni yangilash uchun
   useEffect(() => {
     let interval;
-    if (isRunning && data?.data?.article.read_time > Number(read_time) && !data?.data?.read && !data?.data?.finished) {
+    if (isRunning && data?.data?.article?.read_time > Number(read_time) && !data?.data?.read && !data?.data?.finished) {
       interval = setInterval(() => {
         addToLS(articleSlug, count + 1)
         setCount(count + 1);
       }, 1000);
     }
 
-    if (data?.data?.article.read_time <= Number(read_time) || data?.data?.read || data?.data?.finished) {
+    if (data?.data?.article?.read_time <= Number(read_time) || data?.data?.read || data?.data?.finished) {
       clearInterval(interval)
       setisQuiz(true)
     }

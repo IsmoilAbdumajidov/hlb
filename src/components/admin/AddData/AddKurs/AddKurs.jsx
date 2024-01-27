@@ -2,16 +2,16 @@ import { Button } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
 import AddKursForm from './AddKursForm';
 import AccordionAdmin from '../../../accordion/AccordionAdmin';
-import { getCourseAdmin, patchCourse, postCourse } from '../../../../hooks/AdminApi';
+import { patchCourse, postCourse } from '../../../../hooks/AdminApi';
 
-const AddKurs = () => {
-    const [open, setOpen] = React.useState(false);
+const AddKurs = ({ courseData }) => {
+    const [open, setOpen] = useState(false);
     const [isPost, setIsPost] = useState("")
     const [initialValues, setInitialValues] = useState({ title: "", poster_image: "" })
 
     const { mutate, isSuccess } = postCourse()
-    const { data: courseData } = getCourseAdmin()
-    const {mutate:patchMutate}=patchCourse()
+
+    const { mutate: patchMutate } = patchCourse()
 
     const onSubmit = () => {
         const formData = new FormData();
@@ -27,9 +27,9 @@ const AddKurs = () => {
             console.log(initialValues);
             patchMutate(
                 {
-                    title:initialValues.title,
-                    poster_image:initialValues.poster_image,
-                    id:initialValues.id
+                    title: initialValues.title,
+                    poster_image: initialValues.poster_image,
+                    id: initialValues.id
                 }
             )
         }
@@ -44,7 +44,7 @@ const AddKurs = () => {
         }
     }, [isSuccess])
     const EditCourse = (element) => {
-        setInitialValues({id:element.id, title: element.title})
+        setInitialValues({ id: element.id, title: element.title })
         setOpen(true)
     }
 
@@ -60,15 +60,15 @@ const AddKurs = () => {
             </div>
             {courseData ?
                 <div className='overflow-x-scroll'>
-                    <div className='border-b px-3 text-sm font-semibold min-w-[900px] py-2 border-gray-400 grid  grid-cols-12'>
-                        <div className='flex col-span-11 gap-5 items-center'>
+                    <div className='border-b px-3 text-sm    font-semibold min-w-[900px] py-2 border-gray-400 flex justify-between'>
+                        <div className='flex flex-1 gap-5 items-center'>
                             <div className='w-14'>Rasm</div>
                             <div>Sarlavha</div>
                         </div>
-                        <div className='col-span-1'>Sozlamalar</div>
+                        <div className='w-[100px]'>Sozlamalar</div>
                     </div>
                     <div className='min-w-[900px]'>
-                        {courseData?.data.map((data, i) => (
+                        {courseData?.map((data, i) => (
                             <AccordionAdmin setIsPost={setIsPost} edit={EditCourse} key={i} data={data} />
                         ))}
                     </div>

@@ -2,10 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import AddKurs from '../../components/admin/AddData/AddKurs/AddKurs'
 import AddArticle from '../../components/admin/AddData/AddArticle/AddArticle'
+import { getCourseAdmin } from '../../hooks/AdminApi'
 
 
 const AddData = () => {
     const [isOpen, setisOpen] = useState(true)
+    const { data } = getCourseAdmin()
+    console.log(data);
     return (
         <div>
             <div className='rounded-lg flex m-auto  items-center p-2 gap-2 mb-7 bg-white w-max'>
@@ -14,7 +17,7 @@ const AddData = () => {
             </div>
             <div>
                 {
-                    isOpen ? <AddKurs /> : <AddArticle />
+                    isOpen ? <AddKurs courseData={data?.data} /> : <AddArticle courseData={data?.data} />
                 }
             </div>
         </div>

@@ -3,7 +3,7 @@ import { clearLS, getFromLS } from "../utils/localStorage";
 
 export const instance = axios.create({
     baseURL: "https://hlbplatform.pythonanywhere.com/api/",
-    // baseURL: "https://9a72-83-222-7-184.ngrok-free.app/api/",
+    // baseURL: "https://5283-188-113-212-118.ngrok-free.app/api/",
     // headers: {
     //     "Content-Type": "application/json", 
     // },

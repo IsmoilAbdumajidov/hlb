@@ -22,8 +22,8 @@ function Icon({ id, open }) {
 const AccordionAdmin = ({ data, edit, setIsPost }) => {
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
-    const [open, setOpen] = React.useState(0);
-    const [openModule, setOpenModule] = React.useState(false);
+    const [open, setOpen] = useState(0);
+    const [openModule, setOpenModule] = useState(false);
     const [initialValues, setInitialValues] = useState({ title: "", isPaid: false, price: "" })
     const [post, setPost] = useState(false)
 
