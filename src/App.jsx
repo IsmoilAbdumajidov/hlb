@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import PageNotFound from './pages/PageNotFound'
 import MainPage from './pages/main/MainPage'
 import Register from './pages/login/Register'
 import SignUp from './pages/login/SignUp'
@@ -16,6 +15,7 @@ import MyArticle from './pages/userpage/MyArticle'
 import Quiz from './components/user-page/Quiz'
 import Admin from './pages/admin/Admin'
 import AddData from './pages/admin/AddData'
+import PageNotFound from './pages/pageNotFound/PageNotFound'
 
 const App = () => {
 

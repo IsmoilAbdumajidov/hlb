@@ -77,13 +77,27 @@ export const postISRead = () => {
     })
 }
 
-
 export const subscribeCourse = ({ navigate }) => {
     return useMutation((data) => instance.post("student/add_course/", data),
         {
             onSuccess: (data) => {
                 // console.log(data);
                 navigate('/user-page/my-kurs')
+                toast.success("Kursga o'tdingiz")
+            },
+            onError: (error) => {
+                console.log(error);
+                toast.error("Qandaydir xatolik bor")
+            }
+        }
+    )
+
+}
+export const testEnded = () => {
+    return useMutation((data) => instance.post("student/student_quiz/", data),
+        {
+            onSuccess: (data) => {
+                // console.log(data);
                 toast.success("Kursga o'tdingiz")
             },
             onError: (error) => {

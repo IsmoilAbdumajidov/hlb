@@ -37,7 +37,6 @@ const AddKurs = ({ courseData }) => {
 
     }
 
-
     useEffect(() => {
         if (isSuccess) {
             setOpen(false)

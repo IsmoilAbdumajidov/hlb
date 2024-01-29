@@ -14,9 +14,9 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
 const MenuBar = ({ logOut }) => {
-    const token = getFromLS("a-token") || "";
-    const { full_name } = jwtDecode(token)
-    console.log(full_name);
+    const token = getFromLS("a-token");
+    const code = token ? jwtDecode(token) : ""
+    // console.log(full_name);
     return (
         <Menu
             animate={{
@@ -32,7 +32,7 @@ const MenuBar = ({ logOut }) => {
                     <Link className='flex items-center gap-2' to={"/user-page"}>
                         <FaRegUser />
                         <Typography variant="small" className="font-medium">
-                            {full_name || "John Doe"}
+                            {code?.full_name || "Admin"}
                         </Typography>
                     </Link>
                 </MenuItem>

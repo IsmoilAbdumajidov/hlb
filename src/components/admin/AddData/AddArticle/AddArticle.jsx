@@ -15,9 +15,9 @@ const AddArticle = ({ courseData }) => {
   const [selectLesson, setSelectLesson] = useState(false)
   const [change, setOnChange] = useState(false)
   const { mutate, data } = getArticles()
-  // console.log(data);
 
   const { mutate: articleMutate, isSuccess: addSuccess } = addArticle()
+
   const { mutate: patchMutate, isSuccess } = patchArticle()
 
   useEffect(() => {
@@ -53,8 +53,6 @@ const AddArticle = ({ courseData }) => {
     }
   }
 
-
-
   useEffect(() => {
     const orderCourseHandler = () => {
       if (selectLesson !== undefined && courseData[selectId]?.lessons[0]?.id !== undefined) {
@@ -67,7 +65,7 @@ const AddArticle = ({ courseData }) => {
       }
     }
     orderCourseHandler()
-  }, [change,selectId,selectLesson])
+  }, [change, selectId, selectLesson])
 
   const EditCourse = (element) => {
     setInitialValues({ id: element.id, title: element.title })
