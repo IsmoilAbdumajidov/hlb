@@ -12,10 +12,10 @@ import Lessons from './pages/userpage/Lessons'
 import MyCourses from './pages/userpage/MyCourses'
 import MyLesson from './pages/userpage/MyLesson'
 import MyArticle from './pages/userpage/MyArticle'
-import Quiz from './components/user-page/Quiz'
 import Admin from './pages/admin/Admin'
 import AddData from './pages/admin/AddData'
 import PageNotFound from './pages/pageNotFound/PageNotFound'
+import Quiz from './pages/userpage/Quiz'
 
 const App = () => {
 

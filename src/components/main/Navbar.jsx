@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
-  
+
   return (
     <div className='border-b border-white/60 bg-white/50 fixed w-full top-0 left-0 z-30 backdrop-blur-md'>
       <nav className={`flex flex-col lg:flex-row justify-centerlgd:items-center lg:justify-between main-container w-full py-3  `}>
@@ -24,16 +24,15 @@ const Navbar = () => {
           </button>
         </div>
         <ul className={`${isOpen ? "h-full lg:h-auto mt-6" : "h-0 lg:h-auto mt-0"} overflow-hidden flex  lg:mt-0 text-xl lg:text-base  flex-col lg:flex-row  w-full lg:w-auto lg:items-center gap-4 lg:gap-10`}>
-          <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Home</a></li>
-          <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Biz haqimizda</a></li>
           <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Kurslar</a></li>
+          <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Biz haqimizda</a></li>
           <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Fikirlar</a></li>
           <select className='rounded-none w-max border-0 border-b-2 border-[#FCAF3C]'>
             <option className='hover:bg-[#FCAF3C]' value="uz">uz</option>
             <option className='hover:bg-[#FCAF3C]' value="eng">eng</option>
             <option className='hover:bg-[#FCAF3C]' value="ru">ru</option>
           </select>
-          <button onClick={()=> navigate("/register")} className='bg lg:ms-auto mt-auto lg:mt-0 rounded-lg w-full lg:w-auto text-white px-7 py-3 '>Kirish</button>
+          <button onClick={() => navigate("/register")} className='bg lg:ms-auto mt-auto lg:mt-0 rounded-lg w-full lg:w-auto text-white px-7 py-3 '>Kirish</button>
         </ul>
       </nav>
     </div>

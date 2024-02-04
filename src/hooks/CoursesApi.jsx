@@ -57,7 +57,7 @@ export const ArticleDetail = (id) => {
     })
 }
 export const getQuiz = (id) => {
-    return useQuery(["articleId"], () => instance.get(`student/student_article_quiz/${id}/`), {
+    return useQuery(["quizId"], () => instance.get(`student/student_article_quiz/${id}/`), {
         refetchOnWindowFocus: false,
         onSuccess: (data) => console.log(data),
         onError: (error) => {

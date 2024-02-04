@@ -9,7 +9,7 @@ import Spinner from "../../components/spinner/Spinner";
 import { addToLS, getFromLS } from "../../utils/localStorage";
 import { toast } from "react-toastify";
 import TitleDashboard from "../../components/user-page/TitleDashboard";
-import Quiz from "../../components/user-page/Quiz";
+import Quiz from "./Quiz";
 
 
 const MyArticle = () => {
@@ -56,7 +56,7 @@ const MyArticle = () => {
 
   }, [document.visibilityState])
 
-  // bu useEffect sanoq ishlashi uchun va localStorag dagi sanoqni yangilash uchun
+  // bu useEffect sanoq ishlashi uchun va localStorag 1a dagi sanoqni yangilash uchun
   useEffect(() => {
     let interval;
     if (isRunning && data?.data?.article?.read_time > Number(read_time) && !data?.data?.read && !data?.data?.finished) {
@@ -92,7 +92,7 @@ const MyArticle = () => {
         <>
           <div className='border-b flex justify-between mb-3 pb-3 items-center border-black/10'>
             <TitleDashboard title={title} />
-            {data?.data?.article.finished ?
+            {data?.data?.finished ?
               <div className="text-green-500 text-md">Tugatildi</div> :
               <button onClick={clickHandler} className={`${isQuiz ? "" : "cursor-not-allowed opacity-40"}  bg p-2 rounded text-white`}>Testni boshlash</button>
             }
