@@ -29,7 +29,7 @@ const UserSaidbar = ({ isOpen, setIsOpen }) => {
                         Kurslar
                     </div>
                 </NavLink>
-                <NavLink to={"my-kurs"} className="hover:ml-4 w-full text-white hover:text-[#FCAF3C] bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                <NavLink to={"my"} className="hover:ml-4 w-full text-white hover:text-[#FCAF3C] bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <IoBookOutline />
                     <div>
                         Mening kurslarim
@@ -54,7 +54,7 @@ const UserSaidbar = ({ isOpen, setIsOpen }) => {
                     </NavLink>
                 </Tooltips>
                 <Tooltips content={"Mening kurslarim"} position={"right"}>
-                    <NavLink to={"my-kurs"} className="justify-end pr-5 text-white hover:text-[#FCAF3C] w-full bg-[#1E293B] p-3 rounded-full transform ease-in-out duration-300 flex">
+                    <NavLink to={"my"} className="justify-end pr-5 text-white hover:text-[#FCAF3C] w-full bg-[#1E293B] p-3 rounded-full transform ease-in-out duration-300 flex">
                         <IoBookOutline className='w-4 h-4' />
                     </NavLink>
                 </Tooltips>

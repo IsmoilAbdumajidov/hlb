@@ -11,12 +11,11 @@ const MyCourses = () => {
   const { data, isFetching } = getMyCourses(id)
   return (
     <div>
-      <TitleDashboard title={"Mening kurslarim"} />
       {isFetching ? <Skeleton /> :
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 lg:grid-cols-3 mt-10 xl:grid-cols-4">
           {data?.data.map((item, i) =>
           (
-            <CourseCard path="/user-page/my-kurs/lessons/" type="myCourse" item={item} key={i} />
+            <CourseCard path="lessons/" type="myCourse" item={item} key={i} />
           ))}
         </div>
       }

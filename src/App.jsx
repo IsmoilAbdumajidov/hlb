@@ -16,6 +16,8 @@ import Admin from './pages/admin/Admin'
 import AddData from './pages/admin/AddData'
 import PageNotFound from './pages/pageNotFound/PageNotFound'
 import Quiz from './pages/userpage/Quiz'
+import My from './pages/userpage/My'
+import MySameArticel from './pages/userpage/MySameArticel'
 
 const App = () => {
 
@@ -43,19 +45,23 @@ const App = () => {
           <Route path='sign-up' element={<SignUp />} />
           <Route path='sign-in' element={<SignIn />} />
         </Route>
-        <Route path='/admin' element={<Admin/>}>
-          <Route index element={<AddData/>}/>
-          <Route path='content-joylash' element={<AddData/>}/>
+        <Route path='/admin' element={<Admin />}>
+          <Route index element={<AddData />} />
+          <Route path='content-joylash' element={<AddData />} />
         </Route>
 
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>
           <Route index element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
           <Route path='kurslar' element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
-          <Route path='my-kurs' element={<PrivateRoute path={"my-kurs"}><MyCourses /></PrivateRoute>} />
           <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
-          <Route path='my-kurs/lessons/:myKursSlug' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug"}><MyLesson /></PrivateRoute>} />
-          <Route path='my-kurs/lessons/:myKursSlug/:articleSlug' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug/:articleSlug"}><MyArticle /></PrivateRoute>} />
-          <Route path='my-kurs/lessons/:myKursSlug/:articleSlug/quiz' element={<PrivateRoute path={"my-kurs/lessons/:myKursSlug/:articleSlug/quiz"}><Quiz /></PrivateRoute>} />
+          <Route path='my' element={<PrivateRoute path={"my"}><My /></PrivateRoute>} >
+            <Route index element={<PrivateRoute path={"kurs"}><MyCourses /></PrivateRoute>} />
+            <Route path='kurs' element={<PrivateRoute path={"kurs"}><MyCourses /></PrivateRoute>} />
+            <Route path='lessons' element={<PrivateRoute path={"lessons"}><MySameArticel /></PrivateRoute>} />
+          </Route>
+          <Route path='my/kurs/lessons/:myKursSlug' element={<PrivateRoute path={"kurs/lessons/:myKursSlug"}><MyLesson /></PrivateRoute>} />
+          <Route path='my/kurs/lessons/:myKursSlug/:articleSlug' element={<PrivateRoute path={"kurs/lessons/:myKursSlug/:articleSlug"}><MyArticle /></PrivateRoute>} />
+          <Route path='my/kurs/lessons/:myKursSlug/:articleSlug/quiz' element={<PrivateRoute path={"kurs/lessons/:myKursSlug/:articleSlug/quiz"}><Quiz /></PrivateRoute>} />
         </Route>
       </Routes>
 
