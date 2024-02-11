@@ -16,8 +16,9 @@ export const idArticle = create((set) => ({
 const UserPage = () => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(true)
-
+    // navigate("all")
     instance.interceptors.response.use((response) => {
+
         return response;
     }, (error) => {
         console.log("error");

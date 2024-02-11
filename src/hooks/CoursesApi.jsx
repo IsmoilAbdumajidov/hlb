@@ -108,3 +108,39 @@ export const testEnded = () => {
     )
 
 }
+
+export const getAllArticles = () => {
+    return useQuery(["allArticle"], () => instance.get(`student/all_articles/`), {
+        refetchOnWindowFocus: false,
+        onSuccess: (data) => console.log(data),
+        onError: (error) => {
+            toast.error("Qandaydir xatolik bor")
+            console.log(error);
+        }
+    })
+}
+export const SearchArticle = (data) => {
+    return useQuery(["searchArticle"], () => instance.get(`student/all_articles/?query=${data}`), {
+        refetchOnWindowFocus: false,
+        enabled:false,
+        onSuccess: (data) => console.log(data),
+        onError: (error) => {
+            toast.error("Qandaydir xatolik bor")
+            console.log(error);
+        }
+    })
+}
+// export const SearchArticle = () => {
+//     return useMutation((data) => instance.get(`student/all_articles/?query=${data}`),
+//         {
+//             onSuccess: (data) => {
+//                 console.log(data);
+//             },
+//             onError: (error) => {
+//                 console.log(error);
+//                 toast.error("Qandaydir xatolik bor")
+//             }
+//         }
+//     )
+
+// }

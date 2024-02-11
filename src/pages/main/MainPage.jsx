@@ -15,7 +15,7 @@ const MainPage = () => {
   const token = getFromLS("a-token")
   useEffect(() => {
     if (token) {
-      navigate("/user-page")
+      navigate("/user-page/all")
     }
   }, []);
   return (

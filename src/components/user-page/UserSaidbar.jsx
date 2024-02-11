@@ -23,7 +23,7 @@ const UserSaidbar = ({ isOpen, setIsOpen }) => {
                 <HiOutlineSquares2X2 />
             </div>
             <div className={`${isOpen ? "hidden" : "flex"} text-white mt-20 flex-col space-y-2 w-full h-[calc(100vh)]`}>
-                <NavLink to={"kurslar"} className="hover:ml-4 w-full text-white hover:text-[#FCAF3C] bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+                <NavLink to={"all/kurs"} className="hover:ml-4 w-full text-white hover:text-[#FCAF3C] bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
                     <HiOutlineAcademicCap />
                     <div>
                         Kurslar
@@ -49,7 +49,7 @@ const UserSaidbar = ({ isOpen, setIsOpen }) => {
 
             <div className={`${isOpen ? "flex" : "hidden"}  mt-20 flex-col space-y-2 w-full h-[calc(100vh)]`}>
                 <Tooltips content={"Kurslar"} position={"right"}>
-                    <NavLink to={"kurslar"} className="justify-end pr-5 text-white hover:text-[#FCAF3C] w-full bg-[#1E293B] p-3 rounded-full transform ease-in-out duration-300 flex">
+                    <NavLink to={"all/kurs"} className="justify-end pr-5 text-white hover:text-[#FCAF3C] w-full bg-[#1E293B] p-3 rounded-full transform ease-in-out duration-300 flex">
                         <HiOutlineAcademicCap className='w-4 h-4' />
                     </NavLink>
                 </Tooltips>

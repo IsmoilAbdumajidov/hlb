@@ -12,7 +12,7 @@ export const postingRegister = ({ navigate }) => {
                 console.log(data);
                 addToLS("a-token", data?.data?.access_token)
                 addToLS("r-token", data?.data?.refresh_token)
-                navigate("/user-page")
+                navigate("/user-page/all")
                 toast.success("Muvaffaqiyatli ro'yxatdan o'tdingiz")
                 
             },
@@ -34,7 +34,7 @@ export const useLogin = ({ navigate }) => {
                 // console.log(jwtDecode(`${data?.data?.access}`));
                 addToLS("a-token", data?.data?.access)
                 addToLS("r-token", data?.data?.refresh)
-                navigate("/user-page")
+                navigate("/user-page/all")
                 toast.success("Kirish muvaffaqiyatli bajarildi");
             },
             onError: (error) => {

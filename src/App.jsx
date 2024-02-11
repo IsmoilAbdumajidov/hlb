@@ -18,6 +18,7 @@ import PageNotFound from './pages/pageNotFound/PageNotFound'
 import Quiz from './pages/userpage/Quiz'
 import My from './pages/userpage/My'
 import MySameArticel from './pages/userpage/MySameArticel'
+import UserCourseArticle from './pages/userpage/UserCourseArticle'
 
 const App = () => {
 
@@ -51,8 +52,11 @@ const App = () => {
         </Route>
 
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>
-          <Route index element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
-          <Route path='kurslar' element={<PrivateRoute path={"kurslar"}><Course /></PrivateRoute>} />
+          <Route path='all' element={<PrivateRoute path={"all"}><UserCourseArticle /></PrivateRoute>} >
+            <Route index element={<PrivateRoute path={"kurs"}><Course /></PrivateRoute>} />
+            <Route path='kurs' element={<PrivateRoute path={"kurs"}><Course /></PrivateRoute>} />
+            <Route path='mavzu' element={<PrivateRoute path={"lessons"}><MySameArticel /></PrivateRoute>} />
+          </Route>
           <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
           <Route path='my' element={<PrivateRoute path={"my"}><My /></PrivateRoute>} >
             <Route index element={<PrivateRoute path={"kurs"}><MyCourses /></PrivateRoute>} />
