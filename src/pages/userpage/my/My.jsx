@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import TitleDashboard from '../../components/user-page/TitleDashboard'
+import TitleDashboard from '../../../components/user-page/TitleDashboard';
+
 
 const My = () => {
     // ${!location==="kurs" ? "bg" : "hover:bg-gray-100"}

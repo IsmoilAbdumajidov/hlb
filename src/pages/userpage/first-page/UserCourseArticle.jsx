@@ -1,5 +1,5 @@
 import React from 'react'
-import TitleDashboard from '../../components/user-page/TitleDashboard'
+import TitleDashboard from '../../../components/user-page/TitleDashboard'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 const UserCourseArticle = () => {

@@ -1,11 +1,11 @@
 import React from 'react'
-import AccordionCom from '../../components/accordion/AccordionCom';
+import AccordionCom from '../../../components/accordion/AccordionCom';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getLessonByID, subscribeCourse } from '../../hooks/CoursesApi';
-import TitleDashboard from '../../components/user-page/TitleDashboard';
-import { getFromLS } from '../../utils/localStorage';
+import { getLessonByID, subscribeCourse } from '../../../hooks/CoursesApi';
+import TitleDashboard from '../../../components/user-page/TitleDashboard';
+import { getFromLS } from '../../../utils/localStorage';
 import { jwtDecode } from 'jwt-decode';
-import Spinner from '../../components/spinner/Spinner';
+import Spinner from '../../../components/spinner/Spinner';
 
 const Lessons = () => {
     const { kursSlug } = useParams()

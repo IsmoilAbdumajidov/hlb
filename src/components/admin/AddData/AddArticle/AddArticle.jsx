@@ -7,14 +7,16 @@ import { ErrorMessage } from 'formik';
 import { addArticle, getArticles, patchArticle } from '../../../../hooks/AdminApi';
 import AddKursForm from '../AddKurs/AddKursForm';
 
+const initialValueObjs = { title: "", poster_image: "", paid: "", price: "" }
+
 const AddArticle = ({ courseData }) => {
   const [open, setOpen] = useState(false);
   const [isPost, setIsPost] = useState("")
   const [selectId, setSelectId] = useState(0)
-  const [initialValues, setInitialValues] = useState({ title: "", poster_image: "" })
+  const [initialValues, setInitialValues] = useState(initialValueObjs)
   const [selectLesson, setSelectLesson] = useState(false)
   const [change, setOnChange] = useState(false)
-  const { mutate, data } = getArticles()
+  const { mutate:getArticleMutate, data } = getArticles()
 
   const { mutate: articleMutate, isSuccess: addSuccess } = addArticle()
 
@@ -56,7 +58,7 @@ const AddArticle = ({ courseData }) => {
   useEffect(() => {
     const orderCourseHandler = () => {
       if (selectLesson !== undefined && courseData[selectId]?.lessons[0]?.id !== undefined) {
-        mutate(
+        getArticleMutate(
           {
             course: courseData[selectId]?.id,
             lesson: selectLesson || courseData[selectId]?.lessons[0]?.id
@@ -101,7 +103,7 @@ const AddArticle = ({ courseData }) => {
       {
         courseData[selectId]?.lessons.length ?
           <div>
-            <AddKursForm onSubmit={onSubmit} initialValues={initialValues} setInitialValues={setInitialValues} handleOpen={handleOpen} open={open} />
+            <AddKursForm onSubmit={onSubmit} initialValues={initialValues} setInitialValues={setInitialValues} handleOpen={handleOpen} open={open} title={"Article qo'shish"} />
             <div className='flex justify-end'>
               <Button variant="gradient" color="green" onClick={handleOpen}>
                 <span>Mavzu Qo'shish</span>

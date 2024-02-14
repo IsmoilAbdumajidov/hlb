@@ -3,11 +3,20 @@ import React, { useEffect, useState } from 'react'
 import AddKursForm from './AddKursForm';
 import AccordionAdmin from '../../../accordion/AccordionAdmin';
 import { patchCourse, postCourse } from '../../../../hooks/AdminApi';
+const initialValueObjs = {
+    title: "",
+    poster_image: "",
+    price: "",
+    certification: "",
+    paid: "",
+
+
+}
 
 const AddKurs = ({ courseData }) => {
     const [open, setOpen] = useState(false);
     const [isPost, setIsPost] = useState("")
-    const [initialValues, setInitialValues] = useState({ title: "", poster_image: "" })
+    const [initialValues, setInitialValues] = useState(initialValueObjs)
 
     const { mutate, isSuccess } = postCourse()
 
@@ -17,11 +26,7 @@ const AddKurs = ({ courseData }) => {
         const formData = new FormData();
         formData.append('image', initialValues.poster_image);
         if (isPost) {
-            mutate(
-                {
-                    poster_image: initialValues.poster_image,
-                    title: initialValues.title
-                })
+            mutate(initialValues)
         }
         else {
             console.log(initialValues);
@@ -33,8 +38,6 @@ const AddKurs = ({ courseData }) => {
                 }
             )
         }
-
-
     }
 
     useEffect(() => {
@@ -43,15 +46,15 @@ const AddKurs = ({ courseData }) => {
         }
     }, [isSuccess])
     const EditCourse = (element) => {
-        setInitialValues({ id: element.id, title: element.title })
+        console.log(element);
+        setInitialValues({ id: element.id, title: element.title,price:element.price,certification:element.certification,paid:element.paid })
         setOpen(true)
     }
-
 
     const handleOpen = () => { setOpen(!open), setIsPost(true), setInitialValues("") };
     return (
         <div className='mt-10'>
-            <AddKursForm open={open} handleOpen={handleOpen} setInitialValues={setInitialValues} onSubmit={onSubmit} initialValues={initialValues} />
+            <AddKursForm type={"kurs"} open={open} handleOpen={handleOpen} setInitialValues={setInitialValues} onSubmit={onSubmit} initialValues={initialValues} title={"Kurs qo'shish"}/>
             <div className='flex justify-end'>
                 <Button variant="gradient" color="green" onClick={handleOpen}>
                     <span>Kurs Qo'shish</span>

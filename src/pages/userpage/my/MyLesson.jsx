@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TitleDashboard from '../../components/user-page/TitleDashboard'
-import AccordionCom from '../../components/accordion/AccordionCom'
+import TitleDashboard from '../../../components/user-page/TitleDashboard'
+import AccordionCom from '../../../components/accordion/AccordionCom'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { getMyLessonByID } from '../../hooks/CoursesApi'
-import Spinner from '../../components/spinner/Spinner'
+import { getMyLessonByID } from '../../../hooks/CoursesApi'
+import Spinner from '../../../components/spinner/Spinner'
 
 const MyLesson = () => {
     const { myKursSlug } = useParams()

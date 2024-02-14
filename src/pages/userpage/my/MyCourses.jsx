@@ -1,10 +1,10 @@
 import { jwtDecode } from 'jwt-decode'
 import React from 'react'
-import { getFromLS } from '../../utils/localStorage'
-import { getMyCourses } from '../../hooks/CoursesApi'
-import TitleDashboard from '../../components/user-page/TitleDashboard'
-import CourseCard from '../../components/user-page/CourseCard'
-import Skeleton from '../../components/Skeleton/Skeleton'
+import { getFromLS } from '../../../utils/localStorage'
+import { getMyCourses } from '../../../hooks/CoursesApi'
+import TitleDashboard from '../../../components/user-page/TitleDashboard'
+import CourseCard from '../../../components/user-page/first-page/CourseCard'
+import Skeleton from '../../../components/Skeleton/Skeleton'
 
 const MyCourses = () => {
   const id = jwtDecode(getFromLS("a-token")).student_id

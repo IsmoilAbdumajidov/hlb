@@ -3,12 +3,12 @@ import { Viewer, Worker } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import { ArticleDetail, getQuiz, postISRead } from "../../hooks/CoursesApi";
+import { ArticleDetail, getQuiz, postISRead } from "../../../hooks/CoursesApi";
 import { useNavigate, useParams } from "react-router-dom";
-import Spinner from "../../components/spinner/Spinner";
-import { addToLS, getFromLS } from "../../utils/localStorage";
+import Spinner from "../../../components/spinner/Spinner";
+import { addToLS, getFromLS } from "../../../utils/localStorage";
 import { toast } from "react-toastify";
-import TitleDashboard from "../../components/user-page/TitleDashboard";
+import TitleDashboard from "../../../components/user-page/TitleDashboard";
 import Quiz from "./Quiz";
 
 

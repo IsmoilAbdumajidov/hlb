@@ -7,7 +7,7 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-import ProgressBar from '../progressBar/ProgressBar';
+import ProgressBar from '../../progressBar/ProgressBar';
 
 const CourseCard = ({ item, path }) => {
   const navigate = useNavigate()

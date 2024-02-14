@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArticleDetail, getQuiz, testEnded } from '../../hooks/CoursesApi'
-import { addToLS, getFromLS } from '../../utils/localStorage'
-import Spinner from '../../components/spinner/Spinner'
+import { ArticleDetail, getQuiz, testEnded } from '../../../hooks/CoursesApi'
+import { addToLS, getFromLS } from '../../../utils/localStorage'
+import Spinner from '../../../components/spinner/Spinner'
 
 const Quiz = () => {
     const { articleSlug } = useParams()

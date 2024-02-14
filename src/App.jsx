@@ -7,18 +7,19 @@ import SignIn from './pages/login/SignIn'
 import UserPage from './pages/userpage/UserPage'
 import PrivateRoute from './router/PrivateRoute'
 import { ToastContainer } from 'react-toastify'
-import Course from './pages/userpage/Course'
-import Lessons from './pages/userpage/Lessons'
-import MyCourses from './pages/userpage/MyCourses'
-import MyLesson from './pages/userpage/MyLesson'
-import MyArticle from './pages/userpage/MyArticle'
+import Lessons from './pages/userpage/first-page/Lessons'
 import Admin from './pages/admin/Admin'
 import AddData from './pages/admin/AddData'
 import PageNotFound from './pages/pageNotFound/PageNotFound'
-import Quiz from './pages/userpage/Quiz'
-import My from './pages/userpage/My'
-import MySameArticel from './pages/userpage/MySameArticel'
-import UserCourseArticle from './pages/userpage/UserCourseArticle'
+import Quiz from './pages/userpage/my/Quiz'
+import UserCourseArticle from './pages/userpage/first-page/UserCourseArticle'
+import My from './pages/userpage/my/My'
+import MyCourses from './pages/userpage/my/MyCourses'
+import MyLesson from './pages/userpage/my/MyLesson'
+import MyArticle from './pages/userpage/my/MyArticle'
+import Course from './pages/userpage/first-page/Course'
+import MyIndividualArticel from './pages/userpage/my/MyIndividualArticel'
+import IndividualArticles from './pages/userpage/first-page/IndividualArticles'
 
 const App = () => {
 
@@ -55,13 +56,13 @@ const App = () => {
           <Route path='all' element={<PrivateRoute path={"all"}><UserCourseArticle /></PrivateRoute>} >
             <Route index element={<PrivateRoute path={"kurs"}><Course /></PrivateRoute>} />
             <Route path='kurs' element={<PrivateRoute path={"kurs"}><Course /></PrivateRoute>} />
-            <Route path='mavzu' element={<PrivateRoute path={"lessons"}><MySameArticel /></PrivateRoute>} />
+            <Route path='mavzu' element={<PrivateRoute path={"lessons"}><IndividualArticles /></PrivateRoute>} />
           </Route>
           <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
           <Route path='my' element={<PrivateRoute path={"my"}><My /></PrivateRoute>} >
             <Route index element={<PrivateRoute path={"kurs"}><MyCourses /></PrivateRoute>} />
             <Route path='kurs' element={<PrivateRoute path={"kurs"}><MyCourses /></PrivateRoute>} />
-            <Route path='lessons' element={<PrivateRoute path={"lessons"}><MySameArticel /></PrivateRoute>} />
+            <Route path='lessons' element={<PrivateRoute path={"lessons"}><MyIndividualArticel /></PrivateRoute>} />
           </Route>
           <Route path='my/kurs/lessons/:myKursSlug' element={<PrivateRoute path={"kurs/lessons/:myKursSlug"}><MyLesson /></PrivateRoute>} />
           <Route path='my/kurs/lessons/:myKursSlug/:articleSlug' element={<PrivateRoute path={"kurs/lessons/:myKursSlug/:articleSlug"}><MyArticle /></PrivateRoute>} />

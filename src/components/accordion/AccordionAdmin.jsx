@@ -77,7 +77,7 @@ const AccordionAdmin = ({ data, edit, setIsPost }) => {
         <>
             <Accordion open={open === 1}>
                 <AccordionHeader className='flex  min-w-[900px] w-full  py-2 items-center border-b border-gray-400'>
-                    <AccHeaderKurs data={data} edit={edit} deleteHandler={deleteHandler} setIsPost={setIsPost} handleOpen={handleOpen}>
+                    <AccHeaderKurs  data={data} edit={edit} deleteHandler={deleteHandler} setIsPost={setIsPost} handleOpen={handleOpen}>
                         <Icon id={1} open={open} />
                     </AccHeaderKurs>
                 </AccordionHeader>
