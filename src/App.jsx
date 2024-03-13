@@ -22,6 +22,7 @@ import MyIndividualArticel from './pages/userpage/my/MyIndividualArticel'
 import IndividualArticles from './pages/userpage/first-page/IndividualArticles'
 
 const App = () => {
+  // console.log("sas");
 
   return (
     <div>
