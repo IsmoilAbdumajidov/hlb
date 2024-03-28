@@ -27,7 +27,7 @@ const Navbar = () => {
           <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Kurslar</a></li>
           <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Biz haqimizda</a></li>
           <li className='border-b-2 lg:border-b-0 border-dotted'><a className='hvr-underline-from-left py-2' href="#">Fikirlar</a></li>
-          <select className='rounded-none w-max border-0 border-b-2 border-[#FCAF3C]'>
+          <select className='rounded-none w-max border-0 bg-transparent border-b-2 border-[#FCAF3C]'>
             <option className='hover:bg-[#FCAF3C]' value="uz">uz</option>
             <option className='hover:bg-[#FCAF3C]' value="eng">eng</option>
             <option className='hover:bg-[#FCAF3C]' value="ru">ru</option>
