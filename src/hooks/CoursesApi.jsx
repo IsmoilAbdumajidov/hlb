@@ -82,7 +82,7 @@ export const subscribeCourse = ({ navigate }) => {
         {
             onSuccess: (data) => {
                 // console.log(data);
-                navigate('/user-page/my-kurs')
+                navigate('/user-page/my/kurs')
                 toast.success("Kursga o'tdingiz")
             },
             onError: (error) => {

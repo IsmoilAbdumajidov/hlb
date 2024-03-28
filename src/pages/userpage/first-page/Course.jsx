@@ -13,7 +13,7 @@ const Course = () => {
             {isFetching ? <Skeleton /> :
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 lg:grid-cols-3 mt-10 xl:grid-cols-4">
                     {data?.data.map((item, i) => (
-                        <CourseCard path="/user-page/kurslar/lessons/" type="allCourse" item={item} key={i} />
+                        <CourseCard path="/user-page/kurs/lessons/" type="allCourse" item={item} key={i} />
                     ))}
                 </div>
             }

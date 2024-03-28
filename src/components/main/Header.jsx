@@ -12,7 +12,7 @@ const Header = () => {
                     <button className='bg ms-3 px-6 mt-8 hover:shadow-xl hover:shadow-orange-500 shadow-lg shadow-orange-500/80 py-3 rounded-md text-white'>O'qishni boshlash</button>
                 </div>
                 <div className='w-full text-center lg:text-start lg:w-[50%]'>
-                   <HeaderAnimation/>
+                    <HeaderAnimation />
                 </div>
             </div>
         </div>

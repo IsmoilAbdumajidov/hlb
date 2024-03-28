@@ -54,12 +54,13 @@ const App = () => {
         </Route>
 
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>
+          <Route index element={<PrivateRoute path={"all"}><UserCourseArticle /></PrivateRoute>} ></Route>
           <Route path='all' element={<PrivateRoute path={"all"}><UserCourseArticle /></PrivateRoute>} >
             <Route index element={<PrivateRoute path={"kurs"}><Course /></PrivateRoute>} />
             <Route path='kurs' element={<PrivateRoute path={"kurs"}><Course /></PrivateRoute>} />
-            <Route path='mavzu' element={<PrivateRoute path={"lessons"}><IndividualArticles /></PrivateRoute>} />
+            <Route path='mavzu' element={<PrivateRoute path={"mavzu"}><IndividualArticles /></PrivateRoute>} />
           </Route>
-          <Route path='kurslar/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
+          <Route path='kurs/lessons/:kursSlug' element={<PrivateRoute path={"kurslar/lessons/:kursSlug"}><Lessons /></PrivateRoute>} />
           <Route path='my' element={<PrivateRoute path={"my"}><My /></PrivateRoute>} >
             <Route index element={<PrivateRoute path={"kurs"}><MyCourses /></PrivateRoute>} />
             <Route path='kurs' element={<PrivateRoute path={"kurs"}><MyCourses /></PrivateRoute>} />

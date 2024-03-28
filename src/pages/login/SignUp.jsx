@@ -1,82 +1,69 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { postingRegister } from '../../hooks/PostingRegistration'
-const inputStyle = "w-full bg-gray-50 rounded-md py-3  focus:outline-[#FF663B]"
-import Input from 'react-phone-number-input/input'
-import PassInput from '../../components/input/PassInput'
 import { useNavigate } from 'react-router-dom'
-import InputComponent from '../../components/input/InputComponent'
+import { Form, Formik } from 'formik'
+import FormControl from '../../utils/form-utils/FormControl'
+import * as Yup from "yup"
 
-const initialValue = {
-    user: {
-        username: "",
-        password: ""
-    },
-    full_name: "",
-    phone_number: "",
-    passport_data: ""
-}
 
 const SignUp = () => {
 
-    const [inputsValue, setInputsValue] = useState(initialValue)
-
-    const inputHandler = (name, value, isObj) => {
-        setInputsValue(prev => (isObj ? { ...prev, user: { ...prev.user, [name]: value } } : { ...prev, [name]: value }))
-    }
     const navigate = useNavigate()
-    const [passwValue, setPasswValue] = useState("")
-    const [ischekked, setIschekked] = useState()
     const { mutate } = postingRegister({ navigate })
 
-    const registerHandler = async (e) => {
-        e.preventDefault()
-        mutate(inputsValue)
+    // initila values
+    const initialValues = {
+        username: "",
+        password: "",
+        confirmPassword: "",
+        full_name: "",
+        phone_number: "",
     }
+    // validation
+    const validationSchema = Yup.object({
+        username: Yup.string().required("Ma'lumot kiritlmadi"),
+        full_name: Yup.string().required("Ma'lumot kiritlmadi"),
+        phone_number: Yup.string().required("Ma'lumot kiritlmadi"),
+        password: Yup.string().required("Ma'lumot kiritilmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
+        confirmPassword: Yup.string().required("Ma'lumot kiritilmadi").oneOf([Yup.ref("password"), ""], "Parollar mos kelmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
+    })
 
-    useEffect(() => {
-        if (passwValue.length && inputsValue.user.password.length) {
-            if (inputsValue.user.password === passwValue) {
-                setIschekked(true)
-            }
-            else {
-                setIschekked(false)
-            }
+    // onsubmit function
+    const onSubmit = (values, onSubmitProps) => {
+        const res = {
+            user: {
+                username: values.username.toLowerCase(),
+                password: values.password,
+            },
+            full_name: values.full_name,
+            phone_number: values.phone_number,
         }
-        else {
-            setIschekked("")
-        }
-    }, [passwValue, inputsValue.user.password])
+        console.log("Form data", res)
+        mutate(res)
+        setTimeout(() => {
+            onSubmitProps.setSubmitting(false)
+            onSubmitProps.resetForm()
+        }, 3000);
+    }
 
     return (
 
         <div className='bg-white shadow-lg rounded-xl  p-7'>
             <h1 className='text-2xl font-bold mb-5'>Ro'yxatdan o'tish</h1>
-            <form onSubmit={ischekked ? registerHandler : undefined} className='flex flex-col gap-4'>
-                <div>
-                    <label className='text-sm' htmlFor="fio">F.I.O</label>
-                    {/* <input onChange={(e) => inputHandler(e.target.name, e.target.value, false)} name='full_name' className={inputStyle} type="text" id='fio' placeholder='F.I.O ni kiring' required /> */}
-                    <InputComponent value={inputsValue.full_name} onChange={(e) => inputHandler(e.target.name, e.target.value, false)} name='full_name' typeInput="text" id='fio' placeholder='F.I.O ni kiring' required={true} />
-                </div>
-                <div>
-                    <label className='text-sm' htmlFor="username">Username</label>
-                    {/* <input onChange={(e) => inputHandler(e.target.name, e.target.value.toLowerCase(), true)} name='username' className={`${inputStyle} lowercase`} type="text" id='username' placeholder='Usernameni kiring' required /> */}
-                    <InputComponent value={inputsValue.user.username} onChange={(e) => inputHandler(e.target.name, e.target.value.toLowerCase(), true)} name='username' className={`lowercase`} typeInput="text" id='username' placeholder='Usernameni kiring' required={true} />
-                </div>
-                <div>
-                    <label className='text-sm' htmlFor="number">Telefon</label>
-                    <Input maxLength={17} value={"+998"} id={"number"} className={inputStyle} placeholder="+998 99 123 45 67" onChange={(e) => { inputHandler("phone_number", e, false) }} required />
-                </div>
-                <div>
-                    <label className='text-sm' htmlFor="password">Parol</label>
-                    <PassInput onChange={(e) => inputHandler(e.target.name, e.target.value, true)} name={"password"} id={"password"} placeholder={"Parolingizni kiriting"} className={inputStyle} required />
-                </div>
-                <div>
-                    <label className='text-sm' htmlFor="password1">Parol</label>
-                    <PassInput onChange={(e) => setPasswValue(e.target.value)} id={"password1"} placeholder={"Parolingizni takrorlang"} className={inputStyle} required />
-                    {ischekked === false ? <p className='text-sm text-red-500 mt-3'>Parollar bir xil kiritlmadi</p> : ""}
-                </div>
-                <button type='submit' disabled={inputsValue.user.password && inputsValue.user.username && inputsValue.full_name && inputsValue.phone_number && ischekked ? false : true} className='bg mt-4 disabled:opacity-50 disabled:hover:cursor-not-allowed disabled:shadow-none rounded-md py-3 hover:shadow-lg hover:shadow-[#FF663B] text-white '>Kirish</button>
-            </form>
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                {
+                    formik => (
+                        <Form className='flex flex-col gap-4'>
+                            <FormControl control={"input"} label={"F.I.O"} name={"full_name"} placeholder='F.I.O ni kiring' />
+                            <FormControl control={"input"} name={"username"} className={"lowercase"} label={"Username"} placeholder={"Usernameni kiriting"} />
+                            <FormControl control={"phone"} name={"phone_number"} label={"Telefon"} maxLength={17} value={"+998"} placeholder="+998 99 123 45 67" />
+                            <FormControl maxLength={8} control={"password"} name={"password"} label={"Parol"} placeholder={"Parolingizni kiriting"} />
+                            <FormControl maxLength={8} control={"password"} name={"confirmPassword"} label={"Parol"} placeholder={"Parolingizni takrorlang"} />
+                            <button disabled={!formik.isValid || formik.isSubmitting} type='submit' className='bg mt-6 rounded-md py-3 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-[#FF663B] text-white '>Submit</button>
+                        </Form>
+                    )
+                }
+            </Formik>
         </div>
 
     )

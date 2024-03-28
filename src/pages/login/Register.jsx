@@ -9,9 +9,9 @@ const Register = () => {
     const location = useLocation()
     const token = getFromLS("a-token")
     useEffect(() => {
-      if (token) {
-        navigate("/user-page")
-      }
+        if (token) {
+            navigate("/user-page")
+        }
     }, []);
 
     useEffect(() => {
@@ -21,8 +21,8 @@ const Register = () => {
     return (
         <div className='min-h-screen bg-orange-50 py-5'>
             <button onClick={() => navigate('/')} className='border ml-10 bg p-2 text-white rounded-md'>
-                <FaArrowLeft  className=''/>
-                </button>
+                <FaArrowLeft className='' />
+            </button>
             <div className='h-full main-container items-center grid grid-cols-1 gap-52 lg:grid-cols-2 justify-between'>
                 <div>
                     <div className='rounded-lg flex m-auto  items-center p-2 gap-2 mb-7 bg-white w-max'>
