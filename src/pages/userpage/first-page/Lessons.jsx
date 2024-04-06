@@ -6,14 +6,16 @@ import TitleDashboard from '../../../components/user-page/TitleDashboard';
 import { getFromLS } from '../../../utils/localStorage';
 import { jwtDecode } from 'jwt-decode';
 import Spinner from '../../../components/spinner/Spinner';
+import BuyModule from '../../../components/buyModule/BuyModule';
+import { useState } from 'react';
 
 const Lessons = () => {
     const { kursSlug } = useParams()
     const navigate = useNavigate()
     const { data, isFetching } = getLessonByID(kursSlug)
-
+    const [open, setOpen] = useState(false)
     // console.log(isFetching);
-    const { mutate } = subscribeCourse({navigate})
+    const { mutate } = subscribeCourse({ navigate,setOpen })
     // console.log(jwtDecode(getFromLS("a-token")))
     const clickHandler = () => {
         const id = jwtDecode(getFromLS("a-token"))?.student_id
@@ -24,12 +26,13 @@ const Lessons = () => {
             }
         )
 
-        
+
     }
 
     return (
         <div>
-            {isFetching && <Spinner/>}
+            {isFetching && <Spinner />}
+            {open && <BuyModule></BuyModule>}
             <div className='border-b flex justify-between mb-3 pb-3 items-center border-black/10'>
                 <TitleDashboard title={"Kurslar"} />
                 <button onClick={clickHandler} className='bg p-2 rounded text-white'>Kursga yozilish</button>

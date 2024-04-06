@@ -77,12 +77,17 @@ export const postISRead = () => {
     })
 }
 
-export const subscribeCourse = ({ navigate }) => {
+export const subscribeCourse = ({ navigate, setOpen }) => {
     return useMutation((data) => instance.post("student/add_course/", data),
         {
             onSuccess: (data) => {
-                // console.log(data);
-                navigate('/user-page/my/kurs')
+                console.log(data);
+                if (data?.data?.invoice) {
+                    setOpen(true)
+                }
+                else {
+                    navigate('/user-page/my/kurs')
+                }
                 toast.success("Kursga o'tdingiz")
             },
             onError: (error) => {
