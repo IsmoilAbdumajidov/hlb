@@ -87,8 +87,8 @@ export const subscribeCourse = ({ navigate, setOpen }) => {
                 }
                 else {
                     navigate('/user-page/my/kurs')
+                    toast.success("Kursga o'tdingiz")
                 }
-                toast.success("Kursga o'tdingiz")
             },
             onError: (error) => {
                 console.log(error);

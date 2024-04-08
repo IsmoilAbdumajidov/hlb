@@ -8,8 +8,6 @@ import UserPage from './pages/userpage/UserPage'
 import PrivateRoute from './router/PrivateRoute'
 import { ToastContainer } from 'react-toastify'
 import Lessons from './pages/userpage/first-page/Lessons'
-import Admin from './pages/admin/Admin'
-import AddData from './pages/admin/AddData'
 import PageNotFound from './pages/pageNotFound/PageNotFound'
 import Quiz from './pages/userpage/my/Quiz'
 import UserCourseArticle from './pages/userpage/first-page/UserCourseArticle'
@@ -48,10 +46,7 @@ const App = () => {
           <Route path='sign-up' element={<SignUp />} />
           <Route path='sign-in' element={<SignIn />} />
         </Route>
-        <Route path='/admin' element={<Admin />}>
-          <Route index element={<AddData />} />
-          <Route path='content-joylash' element={<AddData />} />
-        </Route>
+
 
         <Route path='/user-page' element={<PrivateRoute path={"/user-page"}><UserPage /></PrivateRoute>}>
           <Route index element={<PrivateRoute path={"all"}><UserCourseArticle /></PrivateRoute>} ></Route>

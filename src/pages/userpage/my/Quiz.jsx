@@ -112,6 +112,7 @@ const TestCom = ({ articleSlug, quiz, quizFetching, mutate }) => {
         }
     }, [time, min, sec])
 
+
     const quizHandler = (e, id) => {
         const checkId = testResult.filter(item => item.quiz_id !== id)
         setTestResult([...checkId, { quiz_id: id, variant: e.target.value }])

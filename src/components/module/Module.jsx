@@ -7,16 +7,16 @@ import {
     DialogFooter,
 } from "@material-tailwind/react";
 
-const Module = ({ children,open, title, handleOpen }) => {
+const Module = ({ open, title, handleOpen, children }) => {
 
     return (
         <>
 
             <Dialog open={open} handler={handleOpen}>
-                <DialogHeader>{title}</DialogHeader>
+                <DialogHeader className="font-normal">{title}</DialogHeader>
                 <DialogBody>
                     {children || ""}
-                    
+
                 </DialogBody>
                 {/* <DialogFooter>
                 </DialogFooter> */}
