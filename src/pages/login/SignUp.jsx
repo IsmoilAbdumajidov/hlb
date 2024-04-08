@@ -3,7 +3,7 @@ import { postingRegister } from '../../hooks/PostingRegistration'
 import { useNavigate } from 'react-router-dom'
 import { Form, Formik } from 'formik'
 import FormControl from '../../utils/form-utils/FormControl'
-import { object, string } from 'yup';
+import { object, string,ref } from 'yup';
 
 
 const SignUp = () => {
@@ -25,7 +25,7 @@ const SignUp = () => {
         full_name: string().required("Ma'lumot kiritlmadi"),
         phone_number: string().required("Ma'lumot kiritlmadi"),
         password: string().required("Ma'lumot kiritilmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
-        confirmPassword: string().required("Ma'lumot kiritilmadi").oneOf([Yup.ref("password"), ""], "Parollar mos kelmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
+        confirmPassword: string().required("Ma'lumot kiritilmadi").oneOf([ref("password"), ""], "Parollar mos kelmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
     })
 
     // onsubmit function
