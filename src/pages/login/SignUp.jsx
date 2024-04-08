@@ -3,7 +3,8 @@ import { postingRegister } from '../../hooks/PostingRegistration'
 import { useNavigate } from 'react-router-dom'
 import { Form, Formik } from 'formik'
 import FormControl from '../../utils/form-utils/FormControl'
-import { object, string,ref } from 'yup';
+import * as Yup from "yup"
+
 
 
 const SignUp = () => {
@@ -20,12 +21,12 @@ const SignUp = () => {
         phone_number: "",
     }
     // validation
-    const validationSchema = object({
-        username: string().required("Ma'lumot kiritlmadi"),
-        full_name: string().required("Ma'lumot kiritlmadi"),
-        phone_number: string().required("Ma'lumot kiritlmadi"),
-        password: string().required("Ma'lumot kiritilmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
-        confirmPassword: string().required("Ma'lumot kiritilmadi").oneOf([ref("password"), ""], "Parollar mos kelmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
+    const validationSchema = Yup.object({
+        username: Yup.string().required("Ma'lumot kiritlmadi"),
+        full_name: Yup.string().required("Ma'lumot kiritlmadi"),
+        phone_number: Yup.string().required("Ma'lumot kiritlmadi"),
+        password: Yup.string().required("Ma'lumot kiritilmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
+        confirmPassword: Yup.string().required("Ma'lumot kiritilmadi").oneOf([Yup.ref("password"), ""], "Parollar mos kelmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak"),
     })
 
     // onsubmit function

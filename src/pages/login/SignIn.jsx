@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLogin } from '../../hooks/PostingRegistration'
 import { useNavigate } from 'react-router-dom'
-import { object, string } from 'yup';
+import * as Yup from "yup"
 import { Form, Formik } from 'formik'
 import FormControl from '../../utils/form-utils/FormControl'
 
@@ -15,9 +15,9 @@ const SignIn = () => {
         password: "",
     }
     // validation
-    const validationSchema = object({
-        username: string().required("Ma'lumot kiritlmadi"),
-        password: string().required("Ma'lumot kiritilmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak")
+    const validationSchema = Yup.object({
+        username: Yup.string().required("Ma'lumot kiritlmadi"),
+        password: Yup.string().required("Ma'lumot kiritilmadi").max(8, "8 tadan kam belgi kiritishingiz kerak").min(4, "4 tadan ko'p belgi kiritishingiz kerak")
     })
 
     // onsubmit function
