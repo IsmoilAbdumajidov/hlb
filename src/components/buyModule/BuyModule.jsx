@@ -9,17 +9,18 @@ const BuyModule = ({ open, handleOpen, data, title, children }) => {
     return (
         <Module open={open} handleOpen={handleOpen} title={title}>
             {/* {children} */}
-            <h1>Helloworeldsadsl dlskd lskldk</h1>
-            <h1>Helloworeldsadsl dlskd lskldk</h1>
-            <h1>Helloworeldsadsl dlskd lskldk</h1>
-            <div className='flex justify-center gap-10 mt-5'>
-                <a href={data?.invoice} className='border w-20 rounded flex  flex-col items-center justify-center text-center p-1'>
+            <div className='text-center flex flex-col items-center gap-2'>
+                <h1 className='text-2xl'>{data?.course_name}</h1>
+                <div className='text-[#FF663B] text-xl'>{data?.course_price.brm()} so'm</div>
+            </div>
+            <div className='flex justify-center gap-5 mt-5'>
+                <a href={data?.invoice} className='border border-[#FF663B] w-20 rounded flex  flex-col items-center justify-center text-center p-1'>
                     <img className='w-full object-cover' src={click} alt="" />
                 </a>
-                <a href={data?.invoice + "&card_type=humo"} className='border w-20 rounded flex  flex-col items-center justify-center text-center p-1'>
+                <a href={data?.invoice + "&card_type=humo"} className='border border-[#FF663B] w-20 rounded flex  flex-col items-center justify-center text-center p-1'>
                     <img className='w-full   object-cover' src={humo} alt="" />
                 </a>
-                <a href={data?.invoice + "&card_type=uzcard"} className='border w-20 rounded flex  flex-col items-center justify-center text-center p-1'>
+                <a href={data?.invoice + "&card_type=uzcard"} className='border border-[#FF663B] w-20 rounded flex  flex-col items-center justify-center text-center p-1'>
                     <img className='w-7   object-cover' src={uzcard} alt="" />
                 </a>
             </div>

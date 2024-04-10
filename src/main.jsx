@@ -5,6 +5,7 @@ import './index.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter } from 'react-router-dom'
+import "number-brm";
 
 import './css/hover.css'
 
